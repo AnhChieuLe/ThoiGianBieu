@@ -26,6 +26,7 @@
         <entry key="app/src/main/res/drawable/custom_edittext_warning.xml" value="0.213" />
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.213" />
         <entry key="app/src/main/res/drawable/ic_add_circle.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable/ic_add_large.xml" value="0.2065" />
         <entry key="app/src/main/res/drawable/ic_delete.xml" value="0.213" />
         <entry key="app/src/main/res/drawable/ic_notification.xml" value="0.213" />
         <entry key="app/src/main/res/drawable/ic_notification_off.xml" value="0.213" />
@@ -51,6 +52,7 @@
         <entry key="app/src/main/res/layout/fragment_monhoc.xml" value="0.3802083333333333" />
         <entry key="app/src/main/res/layout/fragment_sukien.xml" value="0.3802083333333333" />
         <entry key="app/src/main/res/layout/fragment_thoikhoabieu.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/item_add.xml" value="0.30141085934159895" />
         <entry key="app/src/main/res/layout/item_monhoc.xml" value="0.31209918768704575" />
         <entry key="app/src/main/res/layout/item_sukien.xml" value="0.3802083333333333" />
         <entry key="app/src/main/res/layout/item_thoikhoabieu.xml" value="0.3802083333333333" />

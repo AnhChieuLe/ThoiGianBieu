@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/corner_radius"
+    app:cardElevation="@dimen/cardElevation">
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_item_add"
+        style="@style/button_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="170dp"
+        app:icon="@drawable/ic_add_large"
+        app:iconTint="@color/black"
+        android:textColor="@color/black"
+        app:iconGravity="textTop"
+        app:backgroundTint="@color/normal_yellow"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:drawablePadding="15dp"
+        android:text="@string/themthoikhoabieu"
+        android:alpha="0.5"/>
+</androidx.cardview.widget.CardView>

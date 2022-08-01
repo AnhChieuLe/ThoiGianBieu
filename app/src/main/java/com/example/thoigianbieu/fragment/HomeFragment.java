@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -23,8 +24,6 @@ import com.example.thoigianbieu.SuKienActivity;
 public class HomeFragment extends Fragment {
     SuKienFragment suKienFragment;
     ThoiKhoaBieuFragment thoiKhoaBieuFragment;
-    Button btnThemSuKien;
-    TextView tvSuKienTrong;
 
     private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
@@ -42,18 +41,12 @@ public class HomeFragment extends Fragment {
 
         setFragment();
 
-        checkSuKien();
-
-        setOnButtonClick();
-
         return view;
     }
 
     private void setControl(View view){
-        btnThemSuKien = view.findViewById(R.id.btn_home_themsukien);
         suKienFragment = new SuKienFragment(true);
         thoiKhoaBieuFragment = new ThoiKhoaBieuFragment(true);
-        tvSuKienTrong = view.findViewById(R.id.tv_home_sukientrong);
     }
 
     private void setFragment(){
@@ -61,21 +54,5 @@ public class HomeFragment extends Fragment {
         transaction.replace(R.id.frame_home_thoikhoabieu, thoiKhoaBieuFragment);
         transaction.replace(R.id.frame_home_sukien, suKienFragment);
         transaction.commit();
-    }
-
-    private void checkSuKien(){
-        if(suKienFragment.getDataSize() != 0){
-            tvSuKienTrong.setVisibility(View.VISIBLE);
-        }
-    }
-
-    private void setOnButtonClick(){
-        btnThemSuKien.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SuKienActivity.class);
-                activityResultLauncher.launch(intent);
-            }
-        });
     }
 }

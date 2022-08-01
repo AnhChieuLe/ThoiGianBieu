@@ -118,7 +118,7 @@ public class DialogThemNgayHocFragment extends DialogFragment {
     }
 
     private Calendar chonNgay(TextView tvDate, Calendar calendar){
-        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), R.style.DialogTheme,new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int y, int m, int d) {
                 @SuppressLint("SimpleDateFormat")

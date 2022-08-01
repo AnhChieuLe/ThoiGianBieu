@@ -7,16 +7,22 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_sukien"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_themsukien"
-        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@id/btn_sukien_themsukien"/>
+    <android.widget.Button
+        android:id="@+id/btn_sukien_themsukien"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_themmonhoc"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="40dp"
-        android:layout_marginEnd="30dp"
-        android:backgroundTint="?android:colorPrimary"
-        app:borderWidth="0dp" />
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        style="@style/button_style"
+        android:background="@drawable/custom_button_ok"
+        android:drawableStart="@drawable/ic_add"
+        android:text="@string/them_su_kien"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

@@ -141,7 +141,23 @@ public class ThoiKhoaBieuFragment extends Fragment {
     private void setControl(View view) {
         rcvThoiKhoaBieu = view.findViewById(R.id.rcv_thoikhoabieu);
         listNgayHoc = new ArrayList<>();
-        thoiKhoaBieuAdapter = new ThoiKhoaBieuAdapter(getActivity(), isHome);
+
+
+        DialogThemNgayHocFragment dialog = new DialogThemNgayHocFragment(new DialogThemNgayHocFragment.LoadData() {
+            @Override
+            public void loadData() {
+                ngayHocManager = new NgayHocManager(getActivity());
+                listNgayHoc = ngayHocManager.getListNH();
+                thoiKhoaBieuAdapter.setData(listNgayHoc);
+            }
+        });
+
+        thoiKhoaBieuAdapter = new ThoiKhoaBieuAdapter(getActivity(), isHome, new ThoiKhoaBieuAdapter.iClickAddData() {
+            @Override
+            public void addData() {
+                dialog.show(getActivity().getFragmentManager(), "addNH");
+            }
+        });
         btnThemNgayHoc = view.findViewById(R.id.btn_themngayhoc);
     }
 
@@ -160,8 +176,16 @@ public class ThoiKhoaBieuFragment extends Fragment {
             }
 
             @Override
+            public int getSwipeDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                if(listNgayHoc.size() == viewHolder.getBindingAdapterPosition()){
+                    return 0;
+                }
+                return super.getSwipeDirs(recyclerView, viewHolder);
+            }
+
+            @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                int position = viewHolder.getAdapterPosition();
+                int position = viewHolder.getBindingAdapterPosition();
                 NgayHoc ngayHoc = listNgayHoc.get(position);
                 NgayHocDatabase.getInstance(getActivity()).ngayHocDao().deleteNgayHoc(ngayHoc);
                 loadData();

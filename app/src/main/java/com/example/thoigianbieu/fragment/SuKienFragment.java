@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.Button;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -27,7 +27,6 @@ import com.example.thoigianbieu.adapter.SuKienAdaptter;
 import com.example.thoigianbieu.database.sukien.SuKien;
 import com.example.thoigianbieu.database.sukien.SuKienDatabase;
 import com.example.thoigianbieu.model.ItemOffsetDecoration;
-import com.example.thoigianbieu.model.Result;
 import com.example.thoigianbieu.model.SuKienSnapHelper;
 import com.example.thoigianbieu.setting.SharePreferencesManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -42,28 +41,10 @@ public class SuKienFragment extends Fragment{
     RecyclerView rcvSuKien;
     SuKienAdaptter adaptter;
     List<SuKien> listSuKien;
-    FloatingActionButton btnThemSuKien;
-
-    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
+    Button btnThemSuKien;
+    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-//                    switch (result.getResultCode()){
-//                        case Result.RESULT_SAVE:
-//                            loadData();
-//                            break;
-//                        case Result.RESULT_SAVEAS:
-//                            loadData();
-//                            break;
-//                        case Result.RESULT_DELETE:
-//                            loadData();
-//                            break;
-//                        case Result.RESULT_CANCEL:
-//                            loadData();
-//                            break;
-//                        default:
-//                            loadData();
-//                    }
                     loadData();
                 }
             });
@@ -81,7 +62,7 @@ public class SuKienFragment extends Fragment{
 
         setRecyclerView();
         hideButton();
-        buttonClick();
+        setOnBottomButtonClick();
 
         return view;
     }
@@ -126,17 +107,10 @@ public class SuKienFragment extends Fragment{
         rcvSuKien.addItemDecoration(decoration);
 
         loadData();
+//        if(!isHome){
+//            rcvSuKien.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+//        }
         rcvSuKien.setAdapter(adaptter);
-    }
-
-    private void buttonClick(){
-        btnThemSuKien.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SuKienActivity.class);
-                activityResultLauncher.launch(intent);
-            }
-        });
     }
 
     private void hideButton(){
@@ -144,13 +118,6 @@ public class SuKienFragment extends Fragment{
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-
-                if(dy <= 0 && !isHome){
-                    btnThemSuKien.show();
-                }
-                else {
-                    btnThemSuKien.hide();
-                }
             }
         });
     }
@@ -159,14 +126,16 @@ public class SuKienFragment extends Fragment{
         rcvSuKien = view.findViewById(R.id.rcv_sukien);
         adaptter = new SuKienAdaptter(new SuKienAdaptter.ItemClick() {
             @Override
-            public void click(SuKien suKien) {
+            public void clickItem(SuKien suKien) {
                 itemClick(suKien);
             }
+            @Override
+            public void clickAdd() {
+                Intent intent = new Intent(getActivity(), SuKienActivity.class);
+                activityResultLauncher.launch(intent);
+            }
         }, isHome);
-        btnThemSuKien = view.findViewById(R.id.btn_themsukien);
-        if(isHome){
-            btnThemSuKien.hide();
-        }
+        btnThemSuKien = view.findViewById(R.id.btn_sukien_themsukien);
     }
 
     private void itemClick(SuKien suKien){
@@ -187,12 +156,27 @@ public class SuKienFragment extends Fragment{
         Calendar calendar2 = (Calendar) calendar1.clone();
         calendar2.add(Calendar.DATE, 1);
         if(isHome){
-            listSuKien = SuKienDatabase.getInstance(getActivity()).suKienDao().getListSuKien(calendar1,calendar2);
-        }
-        else {
+            listSuKien = SuKienDatabase.getInstance(getActivity()).suKienDao().getListSuKien(calendar1, calendar2);
+        } else {
             listSuKien = SuKienDatabase.getInstance(getActivity()).suKienDao().getListSuKien();
         }
         adaptter.setData(listSuKien);
+    }
+
+    private void setOnBottomButtonClick(){
+        btnThemSuKien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SuKienActivity.class);
+                activityResultLauncher.launch(intent);
+            }
+        });
+        if(listSuKien.size() == 0){
+            btnThemSuKien.setVisibility(View.GONE);
+        }
+        if(!isHome){
+            btnThemSuKien.setVisibility(View.GONE);
+        }
     }
 
     private void SwipeToDelete(){
@@ -203,18 +187,20 @@ public class SuKienFragment extends Fragment{
             }
 
             @Override
+            public int getSwipeDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                if(viewHolder.getBindingAdapterPosition() == listSuKien.size())     return 0;
+                return super.getSwipeDirs(recyclerView, viewHolder);
+            }
+
+            @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                int position = viewHolder.getAdapterPosition();
+                int position = viewHolder.getBindingAdapterPosition();
                 SuKien suKien = listSuKien.get(position);
                 SuKienDatabase.getInstance(getActivity()).suKienDao().deleteSuKien(suKien);
                 loadData();
             }
         });
         itemTouchHelper.attachToRecyclerView(rcvSuKien);
-    }
-
-    public int getDataSize(){
-        return listSuKien==null?0:listSuKien.size();
     }
 }
 

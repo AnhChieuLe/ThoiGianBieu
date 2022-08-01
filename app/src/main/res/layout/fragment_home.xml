@@ -11,41 +11,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/frame_home_thoikhoabieu">
+        android:layout_below="@id/frame_home_thoikhoabieu"
+        android:layout_marginBottom="5dp">
         <FrameLayout
             android:id="@+id/frame_home_sukien"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/btn_home_themsukien"/>
-        <TextView
-            android:id="@+id/tv_home_sukientrong"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/su_kien_trong"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:alpha="0.5"
-            android:textAllCaps="true"
-            android:visibility="gone"
-            android:gravity="center"
-            android:layout_above="@id/btn_home_themsukien"/>
-        <android.widget.Button
-            android:id="@+id/btn_home_themsukien"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            style="@style/button_style"
-            android:background="@drawable/custom_button_ok"
-            android:drawableStart="@drawable/ic_add"
-            android:text="@string/them_su_kien"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:layout_alignParentBottom="true"/>
+            android:layout_height="match_parent"/>
     </RelativeLayout>
 </RelativeLayout>

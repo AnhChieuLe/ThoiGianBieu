@@ -120,4 +120,6 @@
     <string name="dangnhaptaikhoancuaban">Login your google account</string>
     <string name="dangxuat">Logout</string>
     <string name="dangnhap">Login</string>
+    <string name="themthoikhoabieu">Add class chedule</string>
+    <string name="themsukien">Add event</string>
 </resources>

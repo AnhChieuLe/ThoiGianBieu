@@ -1,17 +1,14 @@
 package com.example.thoigianbieu.adapter;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,14 +16,7 @@ import com.example.thoigianbieu.R;
 import com.example.thoigianbieu.database.sukien.SuKien;
 import com.example.thoigianbieu.setting.SharePreferencesManager;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Calendar;
 import java.util.List;
-import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
 
 public class SuKienAdaptter extends RecyclerView.Adapter<SuKienAdaptter.SuKienViewHolder> {
 
@@ -46,33 +36,63 @@ public class SuKienAdaptter extends RecyclerView.Adapter<SuKienAdaptter.SuKienVi
     }
 
     public interface ItemClick{
-        public void click(SuKien suKien);
+        void clickItem(SuKien suKien);
+        void clickAdd();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position == listSukien.size()?R.layout.item_add :R.layout.item_sukien;
     }
 
     @NonNull
     @Override
     public SuKienViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sukien, parent, false);
+        View view;
+        if(viewType == R.layout.item_add){
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_add, parent, false);
+        }else{
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sukien, parent, false);
+        }
         return new SuKienViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull SuKienViewHolder holder, int position) {
-        SuKien suKien = listSukien.get(position);
-        holder.cardSuKien.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                itemClick.click(suKien);
-            }
-        });
+        if(position == listSukien.size()){
+            holder.btnAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemClick.clickAdd();
+                }
+            });
+            holder.btnAdd.setText(R.string.themsukien);
+        }else {
+            SuKien suKien = listSukien.get(position);
+            holder.cardSuKien.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemClick.clickItem(suKien);
+                }
+            });
 
-        holder.tvTieuDe.setText(suKien.getTieuDe());
-        holder.tvNoiDung.setText(suKien.getNoiDung());
-        holder.tvThoiGian.setText(suKien.getStringThoiGian());
+            holder.tvTieuDe.setText(suKien.getTieuDe());
+            holder.tvNoiDung.setText(suKien.getNoiDung());
+            holder.tvThoiGian.setText(suKien.getStringThoiGian());
+        }
     }
 
     @Override
     public int getItemCount() {
+        if(isHome){
+            return getCount()==0?1:getCount();
+        }else {
+            return getCount()+1;
+        }
+
+    }
+
+    private int getCount(){
         if(listSukien == null){
             return 0;
         }
@@ -90,6 +110,7 @@ public class SuKienAdaptter extends RecyclerView.Adapter<SuKienAdaptter.SuKienVi
 
         TextView tvTieuDe, tvNoiDung, tvThoiGian;
         CardView cardSuKien;
+        Button btnAdd;
 
         public SuKienViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -98,6 +119,8 @@ public class SuKienAdaptter extends RecyclerView.Adapter<SuKienAdaptter.SuKienVi
             tvNoiDung = itemView.findViewById(R.id.tv_sukien_noidung);
             tvThoiGian = itemView.findViewById(R.id.tv_sukien_thoigian);
             cardSuKien = itemView.findViewById(R.id.card_sukien);
+
+            btnAdd = itemView.findViewById(R.id.btn_item_add);
         }
     }
 }

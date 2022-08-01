@@ -36,6 +36,7 @@
         <EditTextPreference
             android:key="PREF_TKB_COUNT"
             android:title="@string/songayhoc"
+            android:defaultValue="30"
             app:useSimpleSummaryProvider="true"
             android:dialogLayout="@layout/pref_tkb_number_edittext"/>
         <ListPreference

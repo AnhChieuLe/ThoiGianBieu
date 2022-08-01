@@ -148,4 +148,6 @@
     <string name="dangnhaptaikhoancuaban">Đăng nhập tài khoản của bạn</string>
     <string name="dangxuat">Đăng xuất</string>
     <string name="dangnhap">Đăng nhập</string>
+    <string name="themthoikhoabieu">Thêm thời khoá biểu</string>
+    <string name="themsukien">Thêm sự kiện</string>
 </resources>
