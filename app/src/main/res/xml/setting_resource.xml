@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="@string/taikhoanvasaoluu">
+        <Preference
+            android:key="PREF_LOGIN"
+            android:title="Đăng nhập">
+        </Preference>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/thoikhoabieu">
+
+        <SwitchPreference
+            android:key="PREF_TKB_INCLUDE_PAST"
+            android:title="@string/hienthithoikhoabieudaqua"
+            android:defaultValue="false"
+            android:summaryOn="@string/hienthingayhocdaqua"
+            android:summaryOff="@string/khonghienthithoikhoabieudaqua" />
+
+        <SwitchPreference
+            android:key="PREF_TKB_INCLUDE_NULL"
+            android:title="@string/hienthithoikhoabieutrong"
+            android:defaultValue="true"
+            android:summaryOn="@string/hienthithoikhoabieutrongOn"
+            android:summaryOff="@string/hienthithoikhoabieutrongOff"/>
+
+        <SwitchPreference
+            android:key="PREF_TKB_INCLUDE_MH"
+            android:title="@string/themmonhoc"
+            android:summaryOn="@string/themmonhocOn"
+            android:summaryOff="@string/themmonhocOff"
+            android:defaultValue="false"/>
+        <EditTextPreference
+            android:key="PREF_TKB_COUNT"
+            android:title="@string/songayhoc"
+            app:useSimpleSummaryProvider="true"
+            android:dialogLayout="@layout/pref_tkb_number_edittext"/>
+        <ListPreference
+            android:key="PREF_TKB_HOME"
+            android:title="@string/thoikhoabieutrangchu"
+            android:entries="@array/tkb_home_entries"
+            android:entryValues="@array/tkb_home_values"
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="0"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/sukien">
+
+        <EditTextPreference
+            android:key="PREF_SK_HOME_COUNT"
+            android:title="@string/sosukientrangchu"
+            app:useSimpleSummaryProvider="true"
+            android:dialogLayout="@layout/pref_tkb_number_edittext"/>
+        <ListPreference
+            android:title="@string/kieusukien"
+            android:key="PREF_SK_STYLE"
+            android:entries="@array/sukien_column_style_entries"
+            android:entryValues="@array/sukien_column_style_values"
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="2"/>
+        <ListPreference
+            android:title="@string/kieusukientrangchu"
+            android:key="PREF_SK_STYLE_HOME"
+            android:entries="@array/sukien_column_style_entries"
+            android:entryValues="@array/sukien_column_style_values"
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="2"/>
+        <ListPreference
+            android:title="@string/socotsukien"
+            android:key="PREF_SK_COLUMN_COUNT"
+            android:entries="@array/sukien_column_entries_values"
+            android:entryValues="@array/sukien_column_entries_values"
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="2"/>
+    </PreferenceCategory>
+
+     <PreferenceCategory
+        android:title="@string/caidatungdung">
+        <ListPreference
+            android:key="PREF_INTERFACE"
+            android:title="@string/giaodienungdung"
+            android:entries="@array/setting_interface_entries"
+            android:entryValues="@array/setting_interface_values"
+            app:useSimpleSummaryProvider="true"
+            android:defaultValue="2"/>
+<!--        <ListPreference-->
+<!--            android:key="PREF_COLOR"-->
+<!--            android:title="@string/mauchude"-->
+<!--            android:entries="@array/setting_color_entries"-->
+<!--            android:entryValues="@array/setting_color_values"-->
+<!--            app:useSimpleSummaryProvider="true"-->
+<!--            android:defaultValue="0"/>-->
+    </PreferenceCategory>
+</PreferenceScreen>

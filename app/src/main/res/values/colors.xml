@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <!--Màu được sử dụng-->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="item_background">#FFFFFFFF</color>
+    <color name="layout_backgroud">#F0F0F0</color>
+
+    <color name="text_color">#464646</color>
+
+    <color name="gray">#AAAAAA</color>
+    <color name="primary_yellow">#FFD802</color>
+    <color name="normal_yellow">#FFEB7F</color>
+    <color name="text_title_yellow">#BA9D00</color>
+    <color name="stroke_color">#DADADA</color>
+    <color name="date_chunhat">#FF6161</color>
+    <color name="red">#FF0000</color>
+
+    <color name="blue">#0046FF</color>
+</resources>

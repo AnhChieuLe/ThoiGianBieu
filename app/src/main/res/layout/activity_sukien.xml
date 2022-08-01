@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SuKienActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_sukien"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
+
+    <LinearLayout
+        android:id="@+id/linearTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar_sukien"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintEnabled="false"
+            app:boxBackgroundMode="none">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_sukien_activity_tieude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:hint="@string/sukien_tieude"
+                android:textColor="@color/text_title_yellow"
+                android:textColorHint="@color/text_title_yellow"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha="0.25"
+            app:dividerColor="@color/text_color" />
+
+
+        <TextView
+            android:id="@+id/tv_sukien_activity_batdau"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.75"
+            android:layout_marginTop="15dp"
+            android:text="@string/sukien_ngaybatdau"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_sukien_activity_ketthuc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.75"
+            android:layout_marginTop="10dp"
+            android:text="@string/sukien_ngayketthuc"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tv_sukien_activity_nhacnho"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:alpha="0.75"
+            android:text="@string/sukien_nhacnho"
+            android:textStyle="bold" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:alpha="0.25"
+            app:dividerColor="@color/text_color" />
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/linearTitle"
+        app:hintEnabled="false"
+        app:boxBackgroundMode="none"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tv_sukien_activity_noidung"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textCapSentences|textMultiLine"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:gravity="top"
+            android:hint="@string/sukien_noidung"
+            android:lineSpacingExtra="5dp"
+            android:alpha="0.75"/>
+    </com.google.android.material.textfield.TextInputLayout>
+</RelativeLayout>

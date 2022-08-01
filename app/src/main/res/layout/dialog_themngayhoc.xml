@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    app:cardCornerRadius="@dimen/corner_radius">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/themngayhoc"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="25dp"/>
+
+        <TextView
+            android:id="@+id/tv_ngayhoc_ngay"
+            style="@style/edittext_style"
+            android:hint="@string/chonngayhoc"/>
+
+        <EditText
+            android:id="@+id/edt_ngayhoc_monhocsang"
+            style="@style/edittext_style"
+            android:hint="@string/nhapmonhocsang"/>
+        <EditText
+            android:id="@+id/edt_ngayhoc_monhocchieu"
+            style="@style/edittext_style"
+            android:hint="@string/nhapmonhocchieu"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:layout_marginTop="25dp">
+            <android.widget.Button
+                android:id="@+id/btn_ngayhoc_huy"
+                style="@style/button_style"
+                android:layout_marginEnd="@dimen/button_margin"
+                android:background="@drawable/custom_button_cancel"
+                android:text="@string/huy"/>
+            <android.widget.Button
+                android:id="@+id/btn_ngayhoc_them"
+                style="@style/button_style"
+                android:background="@drawable/custom_button_ok"
+                android:text="@string/them"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

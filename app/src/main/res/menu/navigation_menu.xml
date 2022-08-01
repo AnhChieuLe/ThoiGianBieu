@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/trangchu"/>
+        <item android:id="@+id/nav_thoikhoabieu"
+            android:icon="@drawable/ic_thoikhoabieu"
+            android:title="@string/thoikhoabieu"/>
+        <item android:id="@+id/nav_sukien"
+            android:icon="@drawable/ic_sukien"
+            android:title="@string/sukien"/>
+        <item android:id="@+id/nav_monhoc"
+            android:icon="@drawable/ic_monhoc"
+            android:title="@string/monhoc"/>
+<!--        <item android:id="@+id/nav_account"-->
+<!--            android:icon="@drawable/ic_account"-->
+<!--            android:title="@string/account_backup"/>-->
+        <item android:id="@+id/nav_setting"
+            android:icon="@drawable/ic_setting"
+            android:title="@string/caidat"/>
+    </group>
+</menu>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.138189448441247" />
+        <entry key="app/src/main/res/drawable-night/backgroud_dialog.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable-night/background_chieu.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable-night/custom_button_ok.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable-night/custom_checkbox.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable-night/custom_edittext.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable-night/custom_edittext_warning.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable/backgroud_dialog.xml" value="0.224" />
+        <entry key="app/src/main/res/drawable/backgroud_dialog_sang.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/background_chieu.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable/background_sang.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/background_sukien.xml" value="0.22" />
+        <entry key="app/src/main/res/drawable/background_title.xml" value="0.224" />
+        <entry key="app/src/main/res/drawable/background_title_cn.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/background_title_past.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/background_title_today.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/custom_button_cancel.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/custom_button_ok.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable/custom_checkbox.xml" value="0.2065" />
+        <entry key="app/src/main/res/drawable/custom_edittext.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable/custom_edittext_warning.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable/ic_add.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable/ic_add_circle.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable/ic_delete.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable/ic_notification.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable/ic_notification_off.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable/ic_save.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable/ic_themmonhoc.xml" value="0.213" />
+        <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.18" />
+        <entry key="app/src/main/res/layout-land/fragment_home.xml" value="0.16" />
+        <entry key="app/src/main/res/layout-land/fragment_thoikhoabieu.xml" value="0.32215357458075905" />
+        <entry key="app/src/main/res/layout-land/item_thoikhoabieu.xml" value="0.32215357458075905" />
+        <entry key="app/src/main/res/layout-night/activity_sukien.xml" value="0.31124412141941" />
+        <entry key="app/src/main/res/layout-night/fragment_home.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/layout-night/item_thoikhoabieu.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/layout-night/widget_sukien_item.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/layout-night/widget_thoikhoabieu_item.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/layout-v28/widget_thoikhoabieu.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.36041043180846516" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/layout/activity_sukien.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/layout/dialog_themmonhoc.xml" value="0.3360410431808465" />
+        <entry key="app/src/main/res/layout/dialog_themngayhoc.xml" value="0.3351859769132108" />
+        <entry key="app/src/main/res/layout/fragment_account.xml" value="0.31124412141941" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_monhoc.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/layout/fragment_sukien.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/layout/fragment_thoikhoabieu.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/item_monhoc.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/layout/item_sukien.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/layout/item_thoikhoabieu.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/layout/loading_view.xml" value="0.43697916666666664" />
+        <entry key="app/src/main/res/layout/navigation_header.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/pref_tkb_number_edittext.xml" value="0.37916666666666665" />
+        <entry key="app/src/main/res/layout/sukien_empty.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/layout/widget_sukien.xml" value="0.409375" />
+        <entry key="app/src/main/res/layout/widget_sukien_item.xml" value="0.37916666666666665" />
+        <entry key="app/src/main/res/layout/widget_thoikhoabieu.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/widget_thoikhoabieu_item.xml" value="0.409375" />
+        <entry key="app/src/main/res/layout/wiget_thoikhoabieu.xml" value="0.3802083333333333" />
+        <entry key="app/src/main/res/menu-v26/sukien_toolbar_menu.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/menu/navigation_menu.xml" value="0.3081468974250739" />
+        <entry key="app/src/main/res/menu/sukien_toolbar_menu.xml" value="0.31209918768704575" />
+        <entry key="app/src/main/res/xml/setting_resource.xml" value="0.33" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

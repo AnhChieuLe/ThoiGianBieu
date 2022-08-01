@@ -1,0 +1,151 @@
+<resources>
+    <string name="app_name">Thời gian biểu</string>
+
+    <string name="trangchu">Trang chủ</string>
+    <string name="thoikhoabieu">Thời khóa biểu</string>
+    <string name="sukien">Sự kiện</string>
+    <string name="monhoc">Môn học</string>
+    <string name="caidat">Cài đặt</string>
+
+    <string name="sang">Sáng</string>
+    <string name="chieu">Chiều</string>
+    <string name="giaodiensang">Sáng</string>
+    <string name="giaodientoi">Tối</string>
+    <string name="theohethong">Theo hệ thống</string>
+    <string name="homnay">Hôm nay</string>
+    <string name="ngaymai">Ngày mai</string>
+    <string name="tiengviet">Tiếng Việt</string>
+    <string name="tienganh">Tiếng Anh</string>
+
+    <string name="vang">Vàng</string>
+    <string name="maudo">Đỏ</string>
+    <string name="xanhla">Xanh lá</string>
+    <string name="xanhduong">Xanh dương</string>
+
+    <string name="cotkhongdeu">Kiểu cột (Không đồng đều)</string>
+    <string name="cotdeu">Kiểu cột (Đồng đều)</string>
+    <string name="hang">Kiểu hàng</string>
+
+    <!--Demo text-->
+    <string name="date_demo" translatable="false">Hôm nay, CN ngày 03/07/2022</string>
+    <string name="monhoc1_demo" translatable="false">Phát triển ứng dụng di động</string>
+    <string name="monhoc2_demo" translatable="false">Lập trình web</string>
+    <string name="title_event_demo" translatable="false">Bảo hành laptop</string>
+    <string name="time_event_demo" translatable="false">Ngày mai, 9:30</string>
+    <string name="noidung_event_demo" translatable="false">Mang laptop đi bảo hành bàn phím</string>
+    <string name="giangvien_demo" translatable="false">Giảng viên:</string>
+    <string name="thoigian_monhoc_demo" translatable="false">Thời gian:</string>
+    <string name="phonghoc_demo" translatable="false">Phòng:</string>
+    <string name="developerName" translatable="false">Lê Anh Chiêu</string>
+    <string name="developerSchool" translatable="false">Học viện Công nghệ Bưu chính Viễn Thông</string>
+    <string name="developerEmail" translatable="false">chieu28022000@gmail.com</string>
+
+    <!--Thêm môn học-->
+    <string name="them_mon_hoc">Thêm môn học</string>
+    <string name="themmonhoc_mamonhoc">Nhập mã môn học</string>
+    <string name="themmonhoc_tenmonhoc">Nhập tên môn học</string>
+    <string name="themmonhoc_tengiangvien">Nhập tên giảng viên</string>
+    <string name="themmonhoc_phonghoc">Nhập phòng học</string>
+    <string name="themmonhoc_ngaybatdau">Ngày bắt đầu</string>
+    <string name="themmonhoc_ngayketthuc">Ngày kết thúc</string>
+    <string name="themmonhoc_sotuan">Số tuần</string>
+    <string name="themmonhoc_sobuoi">Số buổi</string>
+
+    <string name="themmonhoc_T2">T2</string>
+    <string name="themmonhoc_T3">T3</string>
+    <string name="themmonhoc_T4">T4</string>
+    <string name="themmonhoc_T5">T5</string>
+    <string name="themmonhoc_T6">T6</string>
+    <string name="themmonhoc_T7">T7</string>
+    <string name="themmonhoc_CN">CN</string>
+
+    <!--Button-->
+    <string name="them">Thêm</string>
+    <string name="van_them">Vẫn thêm</string>
+    <string name="huy">Hủy</string>
+    <string name="capnhat">Cập nhật</string>
+    <string name="thongbao">Thông báo</string>
+    <string name="luu">Lưu</string>
+    <string name="xoa">Xóa</string>
+    <string name="ok">OK</string>
+    <string name="khong_luu">Không lưu</string>
+    <string name="them_su_kien">Thêm sự kiện mới</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="sukien_tieude">Nhập tiêu đề</string>
+    <string name="sukien_noidung">Nhập nội dung sự kiện</string>
+    <string name="sukien_ngaybatdau">Bắt đầu lúc</string>
+    <string name="sukien_ngayketthuc">Kết thúc lúc</string>
+    <string name="sukien_nhacnho">Nhắc nhở trước: 0 phút</string>
+
+    <string name="giang_vien">"Giảng viên: "</string>
+    <string name="phong_hoc">"Phòng học: "</string>
+    <string name="thoi_gian">"Thời gian: "</string>
+    <string name="buoi">" buổi"</string>
+    <string name="tuan">" tuần"</string>
+    <string name="trung_lich">Trùng lịch học với môn học khác</string>
+    <string name="su_kien_trong">Hôm nay không có sự kiện</string>
+
+    <!--Thông báo-->
+    <string name="channel_lichhoc">Lịch học</string>
+    <string name="channel_lichhoc_description">Các thông báo về lịch học</string>
+    <string name="channel_sukien">Sự kiện</string>
+    <string name="channel_sukien_description">Các thông báo về sự kiện</string>
+
+    <string name="batdau">"Bắt đầu: "</string>
+    <string name="ketthuc">"Kết thúc: "</string>
+    <string name="nhacnho">"Nhắc nhở: "</string>
+    <string name="phut">" phút"</string>
+    <string name="themngayhoc">Thêm ngày học</string>
+    <string name="chonngayhoc">Chọn ngày học</string>
+    <string name="nhapmonhocsang">Nhập môn học sáng</string>
+    <string name="nhapmonhocchieu">Nhập môn học chiều</string>
+    <string name="themtkb">Thêm thời khoá biểu</string>
+    <string name="khongcosukien">Không có sự kiện trong hôm nay</string>
+    <string name="trong">Trống</string>
+    <string name="ngay">"Ngày "</string>
+    <string name="confirm_end_monhoc">Thời gian cho môn học này đã kết thúc, xác nhận thêm môn học này</string>
+    <string name="thieuthongtin">Thiếu thông tin</string>
+    <string name="khongdetrongbuoihoc">Không để trống cả 2 buổi học</string>
+    <string name="taikhoan">Tài khoản</string>
+    <string name="taikhoanvasaoluu">Tài khoản và sao lưu</string>
+    <string name="userinfo">Thông tin người dùng</string>
+    <string name="username">Tên của bạn</string>
+    <string name="usermail">Email</string>
+    <string name="userschool">Trường</string>
+    <string name="hienthithoikhoabieudaqua">Hiển thị thời khoá biểu đã qua</string>
+    <string name="hienthingayhocdaqua">Hiển thị các ngày học đã qua</string>
+    <string name="khonghienthithoikhoabieudaqua">Không hiển thị thời khoá biểu đã qua</string>
+    <string name="hienthithoikhoabieutrong">Hiển thị thời khoá biểu trống</string>
+    <string name="hienthithoikhoabieutrongOn">Hiển thị thời khoá biểu khi không có lịch học</string>
+    <string name="hienthithoikhoabieutrongOff">Không hiển thị thời khoá biểu khi không có lịch học</string>
+    <string name="themmonhoc">Thêm môn học vào thời khoá biểu</string>
+    <string name="themmonhocOn">Thêm môn học vào thời khoá biểu</string>
+    <string name="themmonhocOff">Không thêm môn học vào thời khoá biểu</string>
+    <string name="songayhoc">Số ngày học hiển thị tối đa</string>
+    <string name="thoikhoabieutrangchu">Thời khoá biểu trên trang chủ</string>
+    <string name="sosukientrangchu">Số sự kiện hiển thị trên trang chủ</string>
+    <string name="kieusukien">Kiểu hiện thị sự kiện</string>
+    <string name="kieusukientrangchu">Kiểu hiện thị sự kiện trên trang chủ</string>
+    <string name="socotsukien">Số cột sự kiện</string>
+    <string name="caidatungdung">Cài đặt ứng dụng</string>
+    <string name="giaodienungdung">Giao diện ứng dụng</string>
+    <string name="ngonngu">Ngôn ngữ</string>
+    <string name="mauchude">Màu chủ đề</string>
+    <string name="toi">Tối</string>
+    <string name="canhbao">Cảnh báo</string>
+    <string name="sukienchualuu">Sự kiện chưa được lưu</string>
+    <string name="minute_0">0 phút</string>
+    <string name="minute_5">5 phút</string>
+    <string name="minute_15">15 phút</string>
+    <string name="minute_30">30 phút</string>
+    <string name="tuychinh">Tuỳ chỉnh</string>
+    <string name="nhactruoc">"Nhắc trước: "</string>
+    <string name="account_backup">Tài khoản và sao lưu</string>
+    <string name="xinchao">Xin chào!</string>
+    <string name="dangnhaptaikhoancuaban">Đăng nhập tài khoản của bạn</string>
+    <string name="dangxuat">Đăng xuất</string>
+    <string name="dangnhap">Đăng nhập</string>
+</resources>
