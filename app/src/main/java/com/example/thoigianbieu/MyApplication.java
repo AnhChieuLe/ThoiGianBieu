@@ -35,7 +35,8 @@ public class MyApplication extends Application {
         checkLogin();
 
         createNotificationChannel();
-        addData();
+
+        //addData();
     }
 
     private void checkLogin(){

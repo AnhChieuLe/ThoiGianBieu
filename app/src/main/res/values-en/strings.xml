@@ -122,4 +122,5 @@
     <string name="dangnhap">Login</string>
     <string name="themthoikhoabieu">Add class chedule</string>
     <string name="themsukien">Add event</string>
+    <string name="chuathem">Not set</string>
 </resources>

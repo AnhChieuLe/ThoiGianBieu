@@ -67,6 +67,9 @@ public class SuKienAdaptter extends RecyclerView.Adapter<SuKienAdaptter.SuKienVi
                 }
             });
             holder.btnAdd.setText(R.string.themsukien);
+            if(isHome){
+                holder.cardAdd.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
+            }
         }else {
             SuKien suKien = listSukien.get(position);
             holder.cardSuKien.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +114,7 @@ public class SuKienAdaptter extends RecyclerView.Adapter<SuKienAdaptter.SuKienVi
         TextView tvTieuDe, tvNoiDung, tvThoiGian;
         CardView cardSuKien;
         Button btnAdd;
+        CardView cardAdd;
 
         public SuKienViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -121,6 +125,7 @@ public class SuKienAdaptter extends RecyclerView.Adapter<SuKienAdaptter.SuKienVi
             cardSuKien = itemView.findViewById(R.id.card_sukien);
 
             btnAdd = itemView.findViewById(R.id.btn_item_add);
+            cardAdd = itemView.findViewById(R.id.card_add);
         }
     }
 }

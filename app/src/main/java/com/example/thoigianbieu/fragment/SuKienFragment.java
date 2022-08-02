@@ -107,9 +107,6 @@ public class SuKienFragment extends Fragment{
         rcvSuKien.addItemDecoration(decoration);
 
         loadData();
-//        if(!isHome){
-//            rcvSuKien.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
-//        }
         rcvSuKien.setAdapter(adaptter);
     }
 

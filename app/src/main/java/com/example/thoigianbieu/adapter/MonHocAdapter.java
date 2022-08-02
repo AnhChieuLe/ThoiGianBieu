@@ -63,14 +63,19 @@ public class MonHocAdapter extends RecyclerView.Adapter<MonHocAdapter.MonHocView
                 itemClick.itemClick(monHoc);
             }
         });
-        if(monHoc.getNgayKetThuc().compareTo(Calendar.getInstance())<0){
+        Calendar now = Calendar.getInstance();
+        now.set(Calendar.HOUR_OF_DAY, 0);
+        now.set(Calendar.MINUTE, 0);
+        now.set(Calendar.SECOND, 0);
+        now.set(Calendar.MILLISECOND, 0);
+        if(monHoc.getNgayKetThuc().compareTo(now)<0){
             holder.cardMonHoc.setAlpha(0.75F);
         }
         holder.tenMonHoc.setText(monHoc.getTenMonHoc());
         holder.tenGiangVien.setText(R.string.giang_vien);
-        holder.tenGiangVien.append(monHoc.getTenGiangVien());
+        holder.tenGiangVien.append(monHoc.getTenGiangVien().equals("")?context.getString(R.string.chuathem):monHoc.getTenGiangVien());
         holder.phongHoc.setText(R.string.phong_hoc);
-        holder.phongHoc.append(monHoc.getPhongHoc());
+        holder.phongHoc.append(monHoc.getPhongHoc().equals("")?context.getString(R.string.chuathem):monHoc.getPhongHoc());
 
         ArrayList<String> buoiHoc = monHoc.getBuoiHoc();
         StringBuilder strBuoiHoc = new StringBuilder();

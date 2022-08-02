@@ -3,8 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="500dp"
+    android:layout_height="match_parent"
     app:cardCornerRadius="@dimen/corner_radius"
+    android:layout_marginTop="40dp"
+    android:layout_marginBottom="45dp"
     android:layout_marginStart="15dp"
     android:layout_marginEnd="15dp">
     <ScrollView
@@ -21,30 +23,47 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/them_mon_hoc"
-                android:textSize="28sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="25dp"/>
-            <EditText
-                android:id="@+id/edt_monhoc_dialog_mamonhoc"
-                style="@style/edittext_style"
-                android:hint="@string/themmonhoc_mamonhoc" />
+                android:layout_marginBottom="15dp"/>
             <EditText
                 android:id="@+id/edt_monhoc_dialog_tenmonhoc"
                 style="@style/edittext_style"
-                android:hint="@string/themmonhoc_tenmonhoc" />
+                android:hint="@string/themmonhoc_tenmonhoc"
+                android:importantForAutofill="no" />
             <EditText
                 android:id="@+id/edt_monhoc_dialog_tengiangvien"
                 style="@style/edittext_style"
-                android:hint="@string/themmonhoc_tengiangvien" />
+                android:hint="@string/themmonhoc_tengiangvien"
+                android:importantForAutofill="no" />
             <EditText
                 android:id="@+id/edt_monhoc_dialog_phonghoc"
                 style="@style/edittext_style"
-                android:hint="@string/themmonhoc_phonghoc" />
-            <TextView
-                android:id="@+id/tv_monhoc_dialog_ngaybatdau"
-                style="@style/edittext_style"
-                android:hint="@string/themmonhoc_ngaybatdau" />
+                android:hint="@string/themmonhoc_phonghoc"
+                android:importantForAutofill="no" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10"
+                android:layout_marginBottom="10dp">
+                <TextView
+                    android:id="@+id/tv_monhoc_dialog_ngaybatdau"
+                    style="@style/edittext_style"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:hint="@string/themmonhoc_ngaybatdau" />
+                <TextView
+                    android:id="@+id/tv_monhoc_dialog_ngayketthuc"
+                    style="@style/edittext_style"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_marginBottom="0dp"
+                    android:hint="@string/themmonhoc_ngayketthuc"/>
+            </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/linear_monhoc_dialog_BuoiHoc"
                 android:layout_width="match_parent"
@@ -53,7 +72,8 @@
                 android:background="@drawable/custom_edittext"
                 android:gravity="center"
                 android:weightSum="7"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:baselineAligned="false">
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -188,32 +208,27 @@
                         style="@style/checkbox_style" />
                 </LinearLayout>
             </LinearLayout>
-            <TextView
-                android:id="@+id/tv_monhoc_dialog_ngayketthuc"
-                style="@style/edittext_style"
-                android:hint="@string/themmonhoc_ngayketthuc"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="10">
-                <EditText
+                <TextView
                     android:id="@+id/edt_monhoc_dialog_sotuan"
                     style="@style/edittext_style"
                     android:layout_width="0dp"
                     android:layout_weight="5"
-                    android:hint="@string/themmonhoc_sotuan"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="0dp"
-                    android:inputType="numberSigned"/>
-                <EditText
+                    android:hint="@string/themmonhoc_sotuan"/>
+                <TextView
                     android:id="@+id/edt_monhoc_dialog_sobuoi"
                     style="@style/edittext_style"
                     android:layout_width="0dp"
                     android:layout_weight="5"
-                    android:hint="@string/themmonhoc_sobuoi"
-                    android:inputType="numberSigned"
-                    android:layout_marginBottom="0dp"/>
+                    android:layout_marginBottom="0dp"
+                    android:hint="@string/themmonhoc_sobuoi"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

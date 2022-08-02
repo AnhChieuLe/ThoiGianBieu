@@ -116,8 +116,9 @@ public class MonHocFragment extends Fragment {
             public void onClick(View view) {
                 DialogThemMonHocFragment dialog = new DialogThemMonHocFragment(new DialogThemMonHocFragment.LoadData() {
                     @Override
-                    public void LoadData() {
-                        loadData();
+                    public void loadData() {
+                        listMonHoc = MonHocDatabase.getInstance(getActivity()).monHocDAO().getListMonHoc();
+                        monHocAdapter.setData(listMonHoc);
                     }
                 });
                 dialog.show(getActivity().getFragmentManager(), "add");
@@ -131,8 +132,9 @@ public class MonHocFragment extends Fragment {
             public void itemClick(MonHoc monHoc) {
                 DialogThemMonHocFragment dialog = new DialogThemMonHocFragment(monHoc, new DialogThemMonHocFragment.LoadData() {
                     @Override
-                    public void LoadData() {
-                        loadData();
+                    public void loadData() {
+                        listMonHoc = MonHocDatabase.getInstance(getActivity()).monHocDAO().getListMonHoc();
+                        monHocAdapter.setData(listMonHoc);
                     }
                 });
                 dialog.show(getActivity().getFragmentManager(), "edit");

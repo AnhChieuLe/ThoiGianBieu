@@ -150,4 +150,5 @@
     <string name="dangnhap">Đăng nhập</string>
     <string name="themthoikhoabieu">Thêm thời khoá biểu</string>
     <string name="themsukien">Thêm sự kiện</string>
+    <string name="chuathem">chưa thêm</string>
 </resources>
