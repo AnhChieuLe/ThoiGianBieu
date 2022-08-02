@@ -48,13 +48,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private DrawerLayout drawerLayout;
 
-    private static final int HOME = 0;
-    private static final int THOIKHOABIEU = 1;
-    private static final int SUKIEN = 2;
-    private static final int MONHOC = 3;
-    private static final int TAIKHOAN = 4;
-    private static final int CAIDAT = 5;
-    private int currentFragment = HOME;
+    public static final int HOME = 0;
+    public static final int THOIKHOABIEU = 1;
+    public static final int SUKIEN = 2;
+    public static final int MONHOC = 3;
+    public static final int CAIDAT = 4;
+    public static int currentFragment = HOME;
 
     private TextView tvName;
     private CircleImageView avatar;

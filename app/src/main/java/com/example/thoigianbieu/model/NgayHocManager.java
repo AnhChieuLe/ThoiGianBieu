@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
@@ -28,50 +29,36 @@ public class NgayHocManager {
         this.listNH = NgayHocDatabase.getInstance(context).ngayHocDao().getListNgayHoc();
     }
 
-    public NgayHocManager(List<NgayHoc> listNH) {
-        this.listNH = listNH;
-    }
-
-    public void addMonHoc(List<MonHoc> listMH){
-        List<NgayHoc> list = convert(listMH);
-
-        if (listNH.size() == 0){
-            listNH = list;
-            return;
-        }
-
-        for(NgayHoc ngayHoc:listNH){
-            for(NgayHoc nh:list){
-                if(exitInListNgayHoc(nh) && nh.equals(ngayHoc)){
-                    ngayHoc.addNgayHoc(nh);
-                }else{
-                    listNH.add(nh);
-                }
-            }
-        }
-    }
-
     public void addMonHoc(){
-        List<NgayHoc> list = convert(MonHocDatabase.getInstance(context).monHocDAO().getListMonHoc());
+        List<MonHoc> listMH = MonHocDatabase.getInstance(context).monHocDAO().getListMonHoc();
+        Log.d("size", listMH.size() + "");
 
-        if(list.isEmpty()){
+        if(listMH.isEmpty()){
             return;
         }
+
+        List<NgayHoc> listFromMH = new ArrayList<>(convert(listMH));
+        Log.d("size", listFromMH.size() + "");
 
         if (listNH.isEmpty()){
-            listNH = new ArrayList<>(list);
+            listNH = new ArrayList<>(listFromMH);
             return;
         }
 
+        List<NgayHoc> listAdd = new ArrayList<>();
+
         for(NgayHoc ngayHoc:listNH){
-            for(NgayHoc nh:list){
-                if(exitInListNgayHoc(nh) && nh.equals(ngayHoc)){
-                    ngayHoc.addNgayHoc(nh);
-                }else{
-                    listNH.add(nh);
+            for(NgayHoc ngayHoc1:listFromMH){
+                if (ngayHoc.equals(ngayHoc1)){
+                    ngayHoc.addNgayHoc(ngayHoc1);
+                }
+                if (!exitInListNgayHoc(ngayHoc1)){
+                    listAdd.add(ngayHoc1);
                 }
             }
         }
+
+        listNH.addAll(listAdd);
     }
 
     public void themThoiKhoaBieuTrong(){
@@ -89,10 +76,6 @@ public class NgayHocManager {
                 index.add(Calendar.DATE, 1);
             }
         }
-    }
-
-    public void xoaThoiKhoaBieuTrong(){
-        listNH.removeIf(ngayHoc -> ngayHoc.getMonHocSang().size() + ngayHoc.getMonHocChieu().size() == 0);
     }
 
     public void xoaNgayHocDaQua(){
@@ -121,8 +104,18 @@ public class NgayHocManager {
 
         filter();
 
+        listNH = subList();
+
+        for(NgayHoc ngayHoc:listNH){
+            Log.d("date", ngayHoc.getStringNgayHoc(context));
+        }
+
         Collections.sort(listNH);
 
+        return listNH;
+    }
+
+    private List<NgayHoc> subList(){
         int max = SharePreferencesManager.getTKBCount();
         int todayPosition = getToDayPosition();
 
@@ -131,7 +124,9 @@ public class NgayHocManager {
         }
 
         int startIndex = Math.max(0, todayPosition - (int)max/2);
-        int endIndex = startIndex + max;
+        int endIndex = Math.min(startIndex + max, listNH.size()-1);
+
+        Log.d("index", startIndex + " " + endIndex);
 
         listNH = listNH.subList(startIndex, endIndex);
 
@@ -150,18 +145,6 @@ public class NgayHocManager {
         if(!SharePreferencesManager.getTKBIncludePast()){
             xoaNgayHocDaQua();
         }
-    }
-
-    public NgayHoc getNgayHocHomNay(List<NgayHoc> list){
-        Calendar cal = Calendar.getInstance();
-        for (NgayHoc ngayHoc:list){
-            if(ngayHoc.getNgayHoc().get(Calendar.DATE) == cal.get(Calendar.DATE)
-            && ngayHoc.getNgayHoc().get(Calendar.MONTH) == cal.get(Calendar.MONTH)
-            && ngayHoc.getNgayHoc().get(Calendar.YEAR) == cal.get(Calendar.YEAR)){
-                return ngayHoc;
-            }
-        }
-        return null;
     }
 
     public int getToDayPosition(){
@@ -257,8 +240,6 @@ public class NgayHocManager {
             min.add(Calendar.DATE, 1);
 
         }while (min.compareTo(max) <= 0);
-
-        listResult.removeIf(ngayHoc -> ngayHoc.getMonHocSang().size() + ngayHoc.getMonHocChieu().size() == 0);
 
         return listResult;
     }

@@ -1,5 +1,7 @@
 package com.example.thoigianbieu.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.example.thoigianbieu.MainActivity;
 import com.example.thoigianbieu.R;
 import com.example.thoigianbieu.SuKienActivity;
 import com.example.thoigianbieu.adapter.SuKienAdaptter;
@@ -36,19 +39,19 @@ import java.util.List;
 
 public class SuKienFragment extends Fragment{
 
-    private boolean isHome;
+    boolean isHome;
 
     RecyclerView rcvSuKien;
     SuKienAdaptter adaptter;
     List<SuKien> listSuKien;
     Button btnThemSuKien;
+
     private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     loadData();
                 }
             });
-
 
     public SuKienFragment(boolean isHome) {
         this.isHome = isHome;
@@ -191,10 +194,29 @@ public class SuKienFragment extends Fragment{
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                int position = viewHolder.getBindingAdapterPosition();
-                SuKien suKien = listSuKien.get(position);
-                SuKienDatabase.getInstance(getActivity()).suKienDao().deleteSuKien(suKien);
-                loadData();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(R.string.canhbao)
+                        .setMessage("Xác nhận xoá sự kiện này")
+                        .setPositiveButton(R.string.xoa, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                int position = viewHolder.getBindingAdapterPosition();
+                                SuKien suKien = listSuKien.get(position);
+                                SuKienDatabase.getInstance(getActivity()).suKienDao().deleteSuKien(suKien);
+                                dialog.dismiss();
+                                loadData();
+                            }
+                        })
+                        .setNegativeButton(R.string.huy, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                loadData();
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.getWindow().setBackgroundDrawableResource(R.drawable.backgroud_dialog);
+                dialog.show();
             }
         });
         itemTouchHelper.attachToRecyclerView(rcvSuKien);

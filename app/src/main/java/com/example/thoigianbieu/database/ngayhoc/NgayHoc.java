@@ -169,7 +169,9 @@ public class NgayHoc implements Comparable, Serializable {
     }
 
     public void addNgayHoc(NgayHoc ngayHoc){
-        monHocSang.addAll(ngayHoc.monHocSang);
-        monHocChieu.addAll(ngayHoc.monHocChieu);
+        if(getCalendarEqual(this.ngayHoc, ngayHoc.ngayHoc)){
+            monHocSang.addAll(ngayHoc.monHocSang);
+            monHocChieu.addAll(ngayHoc.monHocChieu);
+        }
     }
 }

@@ -382,7 +382,7 @@ public class SuKienActivity extends AppCompatActivity {
         };
 
         //Show dialog
-        DatePickerDialog dialog = new DatePickerDialog(this, R.style.DialogTheme, listenerDate,
+        DatePickerDialog dialog = new DatePickerDialog(this, listenerDate,
                 calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE));
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.backgroud_dialog);
         dialog.getDatePicker().setMinDate(Calendar.getInstance().getTimeInMillis());
