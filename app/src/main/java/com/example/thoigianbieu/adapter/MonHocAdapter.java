@@ -54,59 +54,29 @@ public class MonHocAdapter extends RecyclerView.Adapter<MonHocAdapter.MonHocView
     @Override
     public void onBindViewHolder(@NonNull MonHocViewHolder holder, int position) {
         MonHoc monHoc = listMonHoc.get(position);
-        if(monHoc == null) {
-            return;
-        }
+        if(monHoc == null)  return;
+
         holder.cardMonHoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 itemClick.itemClick(monHoc);
             }
         });
-        Calendar now = Calendar.getInstance();
-        now.set(Calendar.HOUR_OF_DAY, 0);
-        now.set(Calendar.MINUTE, 0);
-        now.set(Calendar.SECOND, 0);
-        now.set(Calendar.MILLISECOND, 0);
-        if(monHoc.getNgayKetThuc().compareTo(now)<0){
+
+        if(monHoc.isPast()){
             holder.cardMonHoc.setAlpha(0.75F);
         }
+
         holder.tenMonHoc.setText(monHoc.getTenMonHoc());
+
         holder.tenGiangVien.setText(R.string.giang_vien);
         holder.tenGiangVien.append(monHoc.getTenGiangVien().equals("")?context.getString(R.string.chuathem):monHoc.getTenGiangVien());
+
         holder.phongHoc.setText(R.string.phong_hoc);
         holder.phongHoc.append(monHoc.getPhongHoc().equals("")?context.getString(R.string.chuathem):monHoc.getPhongHoc());
 
-        ArrayList<String> buoiHoc = monHoc.getBuoiHoc();
-        StringBuilder strBuoiHoc = new StringBuilder();
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE");
-        if(buoiHoc.size() != 0){
-            for (int i = 0; i < buoiHoc.size(); i++) {
-                for (int j = 1; j < 8; j++) {
-                    if (buoiHoc.get(i).indexOf("" + j) == 0) {
-                        calendar.set(Calendar.DAY_OF_WEEK, j);
-                        if (buoiHoc.get(i).indexOf("S") == 1) {
-                            strBuoiHoc.append(context.getResources().getString(R.string.sang)).append(" ");
-                        }
-                        if (buoiHoc.get(i).indexOf("C") == 1) {
-                            strBuoiHoc.append(context.getResources().getString(R.string.chieu)).append(" ");
-                        }
-                        strBuoiHoc.append(simpleDateFormat.format(calendar.getTime())).append(", ");
-                        break;
-                    }
-                }
-            }
-        }
-
-        String str = strBuoiHoc.toString();
-        str = str.toLowerCase();
-        if(!str.equals("")){
-            str = str.substring(0,1).toUpperCase() + str.substring(1);
-            str = str.substring(0, str.lastIndexOf(","));
-        }
         holder.buoiHoc.setText(R.string.thoi_gian);
-        holder.buoiHoc.append(str);
+        holder.buoiHoc.append(monHoc.getStringBuoiHoc(context));
     }
 
     @Override
@@ -114,7 +84,7 @@ public class MonHocAdapter extends RecyclerView.Adapter<MonHocAdapter.MonHocView
         return listMonHoc==null?0:listMonHoc.size();
     }
 
-    public class MonHocViewHolder extends RecyclerView.ViewHolder{
+    public static class MonHocViewHolder extends RecyclerView.ViewHolder{
         private final TextView tenMonHoc;
         private final TextView tenGiangVien;
         private final TextView buoiHoc;

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.thoigianbieu.R;
 import com.example.thoigianbieu.database.ngayhoc.NgayHoc;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class ThoiKhoaBieuAdapter extends RecyclerView.Adapter<ThoiKhoaBieuAdapter.ThoiKhoaBieuViewHolder>{
@@ -34,7 +35,7 @@ public class ThoiKhoaBieuAdapter extends RecyclerView.Adapter<ThoiKhoaBieuAdapte
     @SuppressLint("NotifyDataSetChanged")
     public void setData(List<NgayHoc> listNgayHoc){
         this.listNgayHoc = listNgayHoc;
-        Log.d("tkbsize", listNgayHoc.size()+"");
+        this.listNgayHoc.sort(new NgayHoc(Calendar.getInstance()));
         notifyDataSetChanged();
     }
 
@@ -117,7 +118,7 @@ public class ThoiKhoaBieuAdapter extends RecyclerView.Adapter<ThoiKhoaBieuAdapte
         void addData();
     }
 
-    public class ThoiKhoaBieuViewHolder extends RecyclerView.ViewHolder{
+    public static class ThoiKhoaBieuViewHolder extends RecyclerView.ViewHolder{
         TextView tvNgayHoc;
         TextView tvMonHocSang;
         TextView tvMonHocChieu;

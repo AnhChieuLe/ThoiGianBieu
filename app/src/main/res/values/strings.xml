@@ -151,4 +151,7 @@
     <string name="themthoikhoabieu">Thêm thời khoá biểu</string>
     <string name="themsukien">Thêm sự kiện</string>
     <string name="chuathem">chưa thêm</string>
+    <string name="thoigianmonhocdahet">Thời gian học môn này đã hết</string>
+    <string name="ngaybatdaukhonglonhonngayketthuc">Ngày bắt đầu không được lớn hơn ngày kết thúc</string>
+    <string name="khongdetrongtenmonhoc">Không để trống tên môn học</string>
 </resources>

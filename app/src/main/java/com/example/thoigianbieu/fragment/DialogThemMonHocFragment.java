@@ -281,7 +281,7 @@ public class DialogThemMonHocFragment extends DialogFragment {
                 if(monHoc.getTenMonHoc().equals("")){
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle(R.string.canhbao)
-                            .setMessage("Không để trống tên môn học")
+                            .setMessage(R.string.khongdetrongtenmonhoc)
                             .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -295,7 +295,7 @@ public class DialogThemMonHocFragment extends DialogFragment {
                 }else if(monHoc.getNgayKetThuc().compareTo(monHoc.getNgayBatDau()) < 0){
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle(R.string.canhbao)
-                            .setMessage("Ngày bắt đầu không được lớn hơn ngày kết thúc")
+                            .setMessage(R.string.ngaybatdaukhonglonhonngayketthuc)
                             .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -308,7 +308,7 @@ public class DialogThemMonHocFragment extends DialogFragment {
                 }else if(monHoc.getNgayKetThuc().compareTo(now) < 0){
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle(R.string.canhbao)
-                            .setMessage("Thời gian học môn này đã hết")
+                            .setMessage(R.string.thoigianmonhocdahet)
                             .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

@@ -2,22 +2,20 @@ package com.example.thoigianbieu.model;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.thoigianbieu.database.monhoc.MonHoc;
-import com.example.thoigianbieu.database.monhoc.MonHocDAO;
 import com.example.thoigianbieu.database.monhoc.MonHocDatabase;
 import com.example.thoigianbieu.database.ngayhoc.NgayHoc;
 import com.example.thoigianbieu.database.ngayhoc.NgayHocDatabase;
 import com.example.thoigianbieu.setting.SharePreferencesManager;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class NgayHocManager {
     List<NgayHoc> listNH;
@@ -31,104 +29,63 @@ public class NgayHocManager {
 
     public void addMonHoc(){
         List<MonHoc> listMH = MonHocDatabase.getInstance(context).monHocDAO().getListMonHoc();
-        Log.d("size", listMH.size() + "");
+        List<NgayHoc> listFromMH = new ArrayList<>(convert(listMH));
 
         if(listMH.isEmpty()){
             return;
         }
 
-        List<NgayHoc> listFromMH = new ArrayList<>(convert(listMH));
-        Log.d("size", listFromMH.size() + "");
-
         if (listNH.isEmpty()){
-            listNH = new ArrayList<>(listFromMH);
+            listNH = listFromMH;
             return;
         }
 
-        List<NgayHoc> listAdd = new ArrayList<>();
-
-        for(NgayHoc ngayHoc:listNH){
-            for(NgayHoc ngayHoc1:listFromMH){
-                if (ngayHoc.equals(ngayHoc1)){
-                    ngayHoc.addNgayHoc(ngayHoc1);
+        int n = listNH.size();
+        for(int i = 0; i < n; i++){
+            for(NgayHoc ngay:listFromMH){
+                if(listNH.get(i).equals(ngay)){
+                    listNH.get(i).addNgayHoc(ngay);
                 }
-                if (!exitInListNgayHoc(ngayHoc1)){
-                    listAdd.add(ngayHoc1);
+                if(!isExist(ngay)){
+                    listNH.add(ngay);
                 }
-            }
-        }
-
-        listNH.addAll(listAdd);
-    }
-
-    public void themThoiKhoaBieuTrong(){
-        List<Calendar> listNgay = new ArrayList<>();
-        for(NgayHoc ngayHoc:listNH){
-            listNgay.add(ngayHoc.getNgayHoc());
-        }
-        if(!listNgay.isEmpty()){
-            Calendar min = Collections.min(listNgay); Calendar index = (Calendar)min.clone();
-            Calendar max = Collections.max(listNgay);
-            while (index.compareTo(max) <= 0){
-                if(!listNH.contains(new NgayHoc(index))){
-                    listNH.add(new NgayHoc(index));
-                }
-                index.add(Calendar.DATE, 1);
             }
         }
     }
 
-    public void xoaNgayHocDaQua(){
-        Calendar now = Calendar.getInstance();
-        now.set(Calendar.HOUR_OF_DAY, 0);
-        now.set(Calendar.MINUTE, 0);
-        now.set(Calendar.SECOND, 0);
-        now.set(Calendar.MILLISECOND, 0);
-        listNH.removeIf(ngayHoc -> ngayHoc.getNgayHoc().compareTo(now) < 0);
-    }
-
-    private boolean exitInListNgayHoc(NgayHoc ngayHoc){
-        if (listNH.isEmpty()){
-            return false;
-        }
-
-        for(NgayHoc nh:listNH){
-            if(ngayHoc.equals(nh)){
+    private boolean isExist(NgayHoc ngayHoc){
+        for(NgayHoc ngayHoc1:listNH){
+            if(ngayHoc.equals(ngayHoc1)){
                 return true;
             }
         }
         return false;
     }
 
+    public void themThoiKhoaBieuTrong(){
+        if(listNH.isEmpty() || listNH.size() == 1)    return;
+
+        List<Calendar> listNgay = new ArrayList<>();
+        for(NgayHoc ngayHoc:listNH)     listNgay.add(ngayHoc.getNgayHoc());
+
+        Calendar min = (Calendar) Collections.min(listNgay).clone(); Calendar index = (Calendar) min.clone();
+        Calendar max = (Calendar) Collections.max(listNgay).clone();
+
+        List<NgayHoc> listAdd = new ArrayList<>();
+        while (min.compareTo(max) < 0){
+            if(!isExist(new NgayHoc(min))){
+                listNH.add(new NgayHoc(min));
+            }
+
+            min.add(Calendar.DATE, 1);
+        }
+    }
+
     public List<NgayHoc> getListNH() {
 
         filter();
 
-        listNH = subList();
-
-        for(NgayHoc ngayHoc:listNH){
-            Log.d("date", ngayHoc.getStringNgayHoc(context));
-        }
-
-        Collections.sort(listNH);
-
-        return listNH;
-    }
-
-    private List<NgayHoc> subList(){
-        int max = SharePreferencesManager.getTKBCount();
-        int todayPosition = getToDayPosition();
-
-        if(listNH.size() < max){
-            return listNH;
-        }
-
-        int startIndex = Math.max(0, todayPosition - (int)max/2);
-        int endIndex = Math.min(startIndex + max, listNH.size()-1);
-
-        Log.d("index", startIndex + " " + endIndex);
-
-        listNH = listNH.subList(startIndex, endIndex);
+        subList();
 
         return listNH;
     }
@@ -143,14 +100,12 @@ public class NgayHocManager {
         }
 
         if(!SharePreferencesManager.getTKBIncludePast()){
-            xoaNgayHocDaQua();
+            listNH.removeIf(ngayHoc -> ngayHoc.compareTo(new NgayHoc(Calendar.getInstance())) < 0);
         }
     }
 
-    public int getToDayPosition(){
-        if(listNH.isEmpty()){
-            return 0;
-        }
+    public int getDefaultPosition(){
+        if(listNH.isEmpty())    return 0;
 
         int position = 0;
         long min = listNH.get(0).getNgayHoc().compareTo(Calendar.getInstance());
@@ -164,42 +119,6 @@ public class NgayHocManager {
         }
 
         return position;
-    }
-
-    public List<NgayHoc> getWeek(){
-        List<NgayHoc> list = new ArrayList<>();
-        List<NgayHoc> list2 = new ArrayList<>();
-
-        filter();
-
-        for(NgayHoc ngayHoc:listNH){
-            if(ngayHoc.getNgayHoc().get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR)
-            && ngayHoc.getNgayHoc().get(Calendar.WEEK_OF_YEAR) == Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)) {
-                list.add(ngayHoc);
-            }
-        }
-
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-
-        do{
-            if(!exitInListNgayHoc(new NgayHoc(cal))){
-                list.add(new NgayHoc(cal));
-            }
-            cal.add(Calendar.DATE, 1);
-        } while (cal.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY);
-
-        Collections.sort(list);
-        for(NgayHoc ngayHoc:list){
-            if(ngayHoc.compareTo(new NgayHoc(Calendar.getInstance())) < 0){
-                list2.add(ngayHoc);
-            }
-        }
-        
-        list.removeIf(ngayHoc -> ngayHoc.compareTo(new NgayHoc(Calendar.getInstance())) < 0);
-        list.addAll(list2);
-
-        return list;
     }
 
     private List<NgayHoc> convert(List<MonHoc> listMonHoc){
@@ -236,11 +155,73 @@ public class NgayHocManager {
                 }
             }
 
-            listResult.add(ngayHoc);
+            if(ngayHoc.getMonHocSang().size() + ngayHoc.getMonHocChieu().size() != 0){
+                listResult.add(ngayHoc);
+            }
+
             min.add(Calendar.DATE, 1);
 
         }while (min.compareTo(max) <= 0);
 
         return listResult;
+    }
+
+    private void shortList(){
+        Set<NgayHoc> listSet = new TreeSet<>(listNH);
+        listNH = new ArrayList<>(listSet);
+    }
+
+    private void subList(){
+        shortList();
+
+        int max = SharePreferencesManager.getTKBCount();
+        int defaultPosition = getDefaultPosition();
+
+        if(listNH.size() < max)     return ;
+
+        int startIndex = Math.max(0, defaultPosition - (int)max/2);
+        int endIndex = Math.min(startIndex + max, listNH.size());
+
+        listNH = listNH.subList(startIndex, endIndex);
+    }
+
+    public List<NgayHoc> getWeek(){
+        List<NgayHoc> list = new ArrayList<>();
+        List<NgayHoc> list2 = new ArrayList<>();
+
+        if(SharePreferencesManager.getTKBInclude()){
+            addMonHoc();
+        }
+
+        for(NgayHoc ngayHoc:listNH){
+            if(ngayHoc.getNgayHoc().get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR)
+                    && ngayHoc.getNgayHoc().get(Calendar.WEEK_OF_YEAR) == Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)) {
+                list.add(ngayHoc);
+            }
+        }
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+
+        do{
+            if(!isExist(new NgayHoc(cal))){
+                list.add(new NgayHoc(cal));
+            }
+            cal.add(Calendar.DATE, 1);
+        } while (cal.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY);
+
+        Set<NgayHoc> listSorted = new TreeSet<>(list);
+        list = new ArrayList<>(listSorted);
+
+        for(NgayHoc ngayHoc:list){
+            if(ngayHoc.compareTo(new NgayHoc(Calendar.getInstance())) < 0){
+                list2.add(ngayHoc);
+            }
+        }
+
+        list.removeIf(ngayHoc -> ngayHoc.compareTo(new NgayHoc(Calendar.getInstance())) < 0);
+        list.addAll(list2);
+
+        return list;
     }
 }

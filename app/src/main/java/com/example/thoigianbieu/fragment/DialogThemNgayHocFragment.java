@@ -25,6 +25,7 @@ import com.example.thoigianbieu.database.ngayhoc.NgayHocDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 @SuppressLint("ValidFragment")
 public class DialogThemNgayHocFragment extends DialogFragment {
@@ -117,12 +118,11 @@ public class DialogThemNgayHocFragment extends DialogFragment {
         return ngayHoc;
     }
 
-    private Calendar chonNgay(TextView tvDate, Calendar calendar){
+    private void chonNgay(TextView tvDate, Calendar calendar){
         DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int y, int m, int d) {
-                @SuppressLint("SimpleDateFormat")
-                SimpleDateFormat format = new SimpleDateFormat("EEEE, dd/MM/yyyy");
+                SimpleDateFormat format = new SimpleDateFormat("EEEE, dd/MM/yyyy", Locale.getDefault());
                 calendar.set(y, m, d);
 
                 boolean isExist = NgayHocDatabase.getInstance(getActivity()).ngayHocDao().getNgayHoc(calendar) != null;
@@ -141,8 +141,6 @@ public class DialogThemNgayHocFragment extends DialogFragment {
         datePickerDialog.getWindow().setBackgroundDrawableResource(R.drawable.backgroud_dialog);
         datePickerDialog.getDatePicker().setMinDate(Calendar.getInstance().getTimeInMillis());
         datePickerDialog.show();
-
-        return calendar;
     }
 
     private void setControl(View decorView) {

@@ -11,12 +11,11 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
+import java.util.Comparator;
 import java.util.Locale;
-import java.util.Objects;
 
 @Entity(tableName = "ngayhoc")
-public class NgayHoc implements Comparable, Serializable {
+public class NgayHoc implements Comparator<NgayHoc>, Comparable<NgayHoc>,Serializable {
     @PrimaryKey
     private Calendar ngayHoc;
     private ArrayList<String> monHocSang;
@@ -39,6 +38,10 @@ public class NgayHoc implements Comparable, Serializable {
     }
 
     public void setNgayHoc(Calendar ngayHoc) {
+        ngayHoc.set(Calendar.HOUR_OF_DAY, 0);
+        ngayHoc.set(Calendar.MINUTE, 0);
+        ngayHoc.set(Calendar.SECOND, 0);
+        ngayHoc.set(Calendar.MILLISECOND, 0);
         this.ngayHoc = ngayHoc;
     }
 
@@ -84,7 +87,6 @@ public class NgayHoc implements Comparable, Serializable {
         return stringBuilder.toString();
     }
 
-
     public void setMonHocChieu(ArrayList<String> monHocChieu) {
         this.monHocChieu = monHocChieu;
     }
@@ -100,7 +102,7 @@ public class NgayHoc implements Comparable, Serializable {
     public String getStringNgayHoc(Context context){
         StringBuilder ngay = new StringBuilder("");
 
-        if(soSanhNgay(this.ngayHoc)){
+        if(isToDay()){
             String str = context.getResources().getString(R.string.homnay);
             ngay.append(str).append(", ");
         }
@@ -113,14 +115,10 @@ public class NgayHoc implements Comparable, Serializable {
         return str;
     }
 
-    private static boolean soSanhNgay(Calendar calendar){
-        return calendar.get(Calendar.DAY_OF_MONTH)==Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-                && calendar.get(Calendar.MONTH)==Calendar.getInstance().get(Calendar.MONTH)
-                && calendar.get(Calendar.YEAR)==Calendar.getInstance().get(Calendar.YEAR);
-    }
-
     public boolean isToDay(){
-        return soSanhNgay(this.ngayHoc);
+        return  this.ngayHoc.get(Calendar.DATE)     ==  Calendar.getInstance().get(Calendar.DATE)
+            &&  this.ngayHoc.get(Calendar.MONTH)    ==  Calendar.getInstance().get(Calendar.MONTH)
+            &&  this.ngayHoc.get(Calendar.YEAR)     ==  Calendar.getInstance().get(Calendar.YEAR);
     }
 
     public boolean isPast(){
@@ -134,12 +132,12 @@ public class NgayHoc implements Comparable, Serializable {
     public String getStringNgayHocInWeek(Context context){
         StringBuilder ngay = new StringBuilder("");
 
-        if(soSanhNgay(this.ngayHoc)){
+        if(isToDay()){
             String str = context.getResources().getString(R.string.homnay);
             ngay.append(str).append(", ");
         }
 
-        SimpleDateFormat format = new SimpleDateFormat("EEEE");
+        SimpleDateFormat format = new SimpleDateFormat("EEEE", Locale.getDefault());
         ngay.append(format.format(this.ngayHoc.getTime()));
 
         String str = ngay.toString().toLowerCase(Locale.ROOT);
@@ -147,31 +145,26 @@ public class NgayHoc implements Comparable, Serializable {
         return str;
     }
 
+    public void addNgayHoc(NgayHoc ngayHoc){
+        monHocSang.addAll(ngayHoc.monHocSang);
+        monHocChieu.addAll(ngayHoc.monHocChieu);
+    }
+
+    @Override
+    public int compare(NgayHoc o1, NgayHoc o2) {
+        return (int) (o1.ngayHoc.getTimeInMillis() - o2.ngayHoc.getTimeInMillis());
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (!(obj instanceof NgayHoc)) return false;
         NgayHoc ngayHoc = (NgayHoc) obj;
-        return getCalendarEqual(this.ngayHoc, ngayHoc.ngayHoc);
-    }
-
-    public boolean getCalendarEqual(Calendar c1, Calendar c2){
-        boolean result =   c1.get(Calendar.YEAR)   == c2.get(Calendar.YEAR)
-                        && c1.get(Calendar.MONTH)  == c2.get(Calendar.MONTH)
-                        && c1.get(Calendar.DATE)   == c2.get(Calendar.DATE);
-        return result;
+        return this.ngayHoc.equals(ngayHoc.ngayHoc);
     }
 
     @Override
-    public int compareTo(Object obj) {
-        NgayHoc ngayHoc = (NgayHoc) obj;
-        return (int) (this.ngayHoc.getTimeInMillis() - ngayHoc.getNgayHoc().getTimeInMillis());
-    }
-
-    public void addNgayHoc(NgayHoc ngayHoc){
-        if(getCalendarEqual(this.ngayHoc, ngayHoc.ngayHoc)){
-            monHocSang.addAll(ngayHoc.monHocSang);
-            monHocChieu.addAll(ngayHoc.monHocChieu);
-        }
+    public int compareTo(NgayHoc ngay) {
+        return (int) (this.ngayHoc.getTimeInMillis() - ngay.ngayHoc.getTimeInMillis());
     }
 }

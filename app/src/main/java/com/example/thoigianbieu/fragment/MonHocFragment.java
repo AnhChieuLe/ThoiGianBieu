@@ -1,7 +1,9 @@
 package com.example.thoigianbieu.fragment;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -42,6 +44,7 @@ public class MonHocFragment extends Fragment {
     List<MonHoc> listMonHoc;
     MonHocAdapter monHocAdapter;
     FloatingActionButton btnThemMonHoc;
+    Activity mActivity;
 
     @Nullable
     @Override
@@ -61,6 +64,12 @@ public class MonHocFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mActivity = (Activity) context;
+    }
+
     //RecyclerView
     private void setRecyclervView(){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
@@ -69,7 +78,7 @@ public class MonHocFragment extends Fragment {
         rcvMonHoc.setAdapter(monHocAdapter);
 
         // Set Decoration
-        ItemOffsetDecoration decoration = new ItemOffsetDecoration(getActivity(), R.dimen.item_decoration);
+        ItemOffsetDecoration decoration = new ItemOffsetDecoration(mActivity, R.dimen.item_decoration);
         rcvMonHoc.addItemDecoration(decoration);
     }
 
@@ -83,7 +92,7 @@ public class MonHocFragment extends Fragment {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                int position = viewHolder.getAdapterPosition();
+                int position = viewHolder.getBindingAdapterPosition();
                 MonHoc monHoc = listMonHoc.get(position);
                 MonHocDatabase.getInstance(getActivity()).monHocDAO().deleteMonHoc(monHoc);
                 loadData();
@@ -121,7 +130,7 @@ public class MonHocFragment extends Fragment {
                         monHocAdapter.setData(listMonHoc);
                     }
                 });
-                dialog.show(getActivity().getFragmentManager(), "add");
+                dialog.show(mActivity.getFragmentManager(), "add");
             }
         });
     }
@@ -137,7 +146,7 @@ public class MonHocFragment extends Fragment {
                         monHocAdapter.setData(listMonHoc);
                     }
                 });
-                dialog.show(getActivity().getFragmentManager(), "edit");
+                dialog.show(mActivity.getFragmentManager(), "edit");
             }
         });
         rcvMonHoc = view.findViewById(R.id.rcv_monhoc);
@@ -145,7 +154,7 @@ public class MonHocFragment extends Fragment {
     }
 
     public void loadData(){
-        listMonHoc = MonHocDatabase.getInstance(getActivity()).monHocDAO().getListMonHoc();
+        listMonHoc = MonHocDatabase.getInstance(mActivity).monHocDAO().getListMonHoc();
         monHocAdapter.setData(listMonHoc);
     }
 }

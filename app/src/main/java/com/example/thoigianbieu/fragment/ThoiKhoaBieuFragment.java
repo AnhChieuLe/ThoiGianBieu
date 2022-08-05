@@ -77,9 +77,9 @@ public class ThoiKhoaBieuFragment extends Fragment {
 
         //Đặt vị trí mặt định là ngày hôm nay
         if(isHome){
-            linearLayoutManager.scrollToPosition(ngayHocManager.getToDayPosition() + SharePreferencesManager.getTKBHome());
+            linearLayoutManager.scrollToPosition(ngayHocManager.getDefaultPosition() + SharePreferencesManager.getTKBHome());
         }else {
-            staggeredGridLayoutManager.scrollToPosition(ngayHocManager.getToDayPosition());
+            staggeredGridLayoutManager.scrollToPosition(ngayHocManager.getDefaultPosition());
         }
 
         if(isHome){
@@ -101,21 +101,20 @@ public class ThoiKhoaBieuFragment extends Fragment {
     }
 
     private void setButton(){
-        rcvThoiKhoaBieu.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if(dy<=0){
-                    btnThemNgayHoc.show();
-                    if(isHome){
+        btnThemNgayHoc.hide();
+        if(!isHome){
+            rcvThoiKhoaBieu.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    if(dy<0){
+                        btnThemNgayHoc.show();
+                    }else {
                         btnThemNgayHoc.hide();
                     }
-                }else {
-                    btnThemNgayHoc.hide();
                 }
-            }
-        });
-
+            });
+        }
         btnThemNgayHoc.setOnClickListener(new View.OnClickListener() {
             final DialogThemNgayHocFragment dialog = new DialogThemNgayHocFragment(new DialogThemNgayHocFragment.LoadData() {
                 @Override
