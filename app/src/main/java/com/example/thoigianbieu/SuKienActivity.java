@@ -34,6 +34,8 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
+import java.util.Objects;
 
 public class SuKienActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -70,7 +72,7 @@ public class SuKienActivity extends AppCompatActivity {
     private void setToobar(){
         toolbar = findViewById(R.id.toolbar_sukien);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
@@ -184,8 +186,7 @@ public class SuKienActivity extends AppCompatActivity {
             ngayBatDau = suKien.getNgayBatDau();
             ngayKetThuc = suKien.getNgayKetThuc();
 
-            @SuppressLint("SimpleDateFormat")
-            SimpleDateFormat format = new SimpleDateFormat("HH:mm - dd/MM/yyyy");
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm - dd/MM/yyyy", Locale.getDefault());
 
             tvNgayBatDau.setText(getString(R.string.batdau) + format.format(ngayBatDau.getTime()));
             tvNgayKetThuc.setText(getString(R.string.ketthuc) + format.format(ngayKetThuc.getTime()));
@@ -323,7 +324,7 @@ public class SuKienActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(edit)
-                .setTitle("Tuỳ chỉnh")
+                .setTitle(R.string.tuychinh)
                 .setPositiveButton(R.string.ok, onClickPositive)
                 .setNegativeButton(R.string.huy, onClickNegative);
         AlertDialog dialog = builder.create();
@@ -335,6 +336,7 @@ public class SuKienActivity extends AppCompatActivity {
         Calendar index = (Calendar)calendar.clone();
         //Set TimePickerDialog
         TimePickerDialog.OnTimeSetListener listenerTime = new TimePickerDialog.OnTimeSetListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
@@ -344,8 +346,9 @@ public class SuKienActivity extends AppCompatActivity {
 
                 if(ngayBatDau.compareTo(ngayKetThuc) > 0){
                     AlertDialog.Builder builder = new AlertDialog.Builder(SuKienActivity.this);
-                    builder.setTitle("Sai thời gian")
-                            .setMessage("Thời gian kết thúc phải lớn hơn thời gian bắt đầu")
+                    String title = getResources().getString(R.string.saithoigian);
+                    builder.setTitle(title)
+                            .setMessage(R.string.thoigianketthucphailonhonbatdau)
                             .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -357,10 +360,9 @@ public class SuKienActivity extends AppCompatActivity {
                     AlertDialog dialog = builder.create();
                     dialog.getWindow().setBackgroundDrawableResource(R.drawable.backgroud_dialog);
                     dialog.show();
-                }{
-                    @SuppressLint("SimpleDateFormat")
-                    SimpleDateFormat format = new SimpleDateFormat("HH:mm - dd/MM/yyyy");
-                    String str = isBatDau?"Bắt đầu: ":"Kết thúc: ";
+                }else {
+                    SimpleDateFormat format = new SimpleDateFormat("HH:mm - dd/MM/yyyy", Locale.getDefault());
+                    String str = getResources().getString(isBatDau?R.string.batdau:R.string.ketthuc);
                     date.setText(str + format.format(calendar.getTime()));
                 }
             }
@@ -410,8 +412,8 @@ public class SuKienActivity extends AppCompatActivity {
     public void setNotification(SuKien suKien){
         if(suKien.getNgayBatDau().compareTo(Calendar.getInstance()) < 0){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Thông báo")
-                    .setMessage(suKien.getNgayKetThuc().compareTo(Calendar.getInstance()) <= 0?"Sự kiện đã kết thúc":"Sự kiện đang diễn ra")
+            builder.setTitle(R.string.thongbao)
+                    .setMessage(suKien.getNgayKetThuc().compareTo(Calendar.getInstance()) <= 0?R.string.sukiendaketthuc:R.string.sukiendangdienra)
                     .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

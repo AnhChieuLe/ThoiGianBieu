@@ -23,7 +23,7 @@ public class WidgetSuKienService extends RemoteViewsService {
         return new ListViewProvider(this.getApplicationContext(), intent);
     }
 
-    class ListViewProvider implements RemoteViewsFactory{
+    static class ListViewProvider implements RemoteViewsFactory{
 
         private List<SuKien> listItem;
         private Context context;

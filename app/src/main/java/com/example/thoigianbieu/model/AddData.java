@@ -25,7 +25,6 @@ public class AddData {
         calendar2.set(calendar2.get(Calendar.YEAR), calendar2.get(Calendar.MONTH), calendar2.get(Calendar.DAY_OF_MONTH), 0, 0, 0);
         calendar2.add(Calendar.DATE, 21);
 
-        buoiHoc.clear();
         buoiHoc.add("2S");
         MonHocDatabase.getInstance(context).monHocDAO().insertMonHoc(
                 new MonHoc("Thực hành chuyên sâu", "Thầy Sáu", "1B12", buoiHoc, calendar1,calendar2));

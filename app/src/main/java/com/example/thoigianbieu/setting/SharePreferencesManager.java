@@ -50,10 +50,6 @@ public class SharePreferencesManager {
         SharePreferencesManager.getInstance().mySharePreferences.putBooleanValue(PREF_LOGIN, value);
     }
 
-    public static boolean getLogin(){
-        return SharePreferencesManager.getInstance().mySharePreferences.getBooleanValue(PREF_LOGIN);
-    }
-
     public static void putEmail(String value){
         SharePreferencesManager.getInstance().mySharePreferences.putStringValue(PREF_MAIL, value);
     }

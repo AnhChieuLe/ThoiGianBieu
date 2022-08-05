@@ -361,6 +361,7 @@ public class DialogThemMonHocFragment extends DialogFragment {
         });
     }
 
+    @SuppressLint("SetTextI18n")
     private void setSoTuan(ArrayList<String> listBuoiHoc){
         try{
             int soTuan = 0;
@@ -381,7 +382,7 @@ public class DialogThemMonHocFragment extends DialogFragment {
             tvSoBuoi.setText(soBuoi + getString(R.string.buoi));
             tvSoTuan.setText(soTuan + getString(R.string.tuan));
         }catch (Exception e){
-            //do notthing
+            //do nothing
         }
     }
 

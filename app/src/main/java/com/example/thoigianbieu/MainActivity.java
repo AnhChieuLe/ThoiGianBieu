@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MonHocFragment monHoc = new MonHocFragment();
         SettingFragment setting = new SettingFragment(new SettingFragment.ResumeActivity() {
             @Override
-            public void reSume() {
+            public void resume() {
                 setHeader();
             }
         });
@@ -227,11 +227,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Bitmap bitmap = null;
             try {
                 Uri avatarURI = googleSignInAccounts[0].getPhotoUrl();
+                assert avatarURI != null;
                 URL url = new URL(avatarURI.toString());
                 InputStream inputStream = url.openConnection().getInputStream();
                 bitmap = BitmapFactory.decodeStream(inputStream);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }

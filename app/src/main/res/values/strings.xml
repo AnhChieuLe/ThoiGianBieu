@@ -154,4 +154,10 @@
     <string name="thoigianmonhocdahet">Thời gian học môn này đã hết</string>
     <string name="ngaybatdaukhonglonhonngayketthuc">Ngày bắt đầu không được lớn hơn ngày kết thúc</string>
     <string name="khongdetrongtenmonhoc">Không để trống tên môn học</string>
+    <string name="xacnhandangxuat">Xác nhận đăng xuất</string>
+    <string name="xacnhanxoasukien">Xác nhận xoá sự kiện này</string>
+    <string name="saithoigian">Sai thời gian</string>
+    <string name="thoigianketthucphailonhonbatdau">Thời gian kết thúc phải lớn hơn thời gian bắt đầu</string>
+    <string name="sukiendaketthuc">Sự kiện đã kết thúc</string>
+    <string name="sukiendangdienra">Sự kiện đang diễn ra</string>
 </resources>

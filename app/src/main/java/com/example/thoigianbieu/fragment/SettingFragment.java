@@ -1,6 +1,8 @@
 package com.example.thoigianbieu.fragment;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -35,6 +37,8 @@ public class SettingFragment extends PreferenceFragmentCompat {
     Preference loginPreferences;
     ResumeActivity resumeActivity;
 
+    Activity mActivity;
+
     public SettingFragment(ResumeActivity resumeActivity) {
         this.resumeActivity = resumeActivity;
     }
@@ -44,7 +48,7 @@ public class SettingFragment extends PreferenceFragmentCompat {
         public void onActivityResult(ActivityResult result) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(result.getData());
             try {
-                account = GoogleSignIn.getLastSignedInAccount(getActivity());
+                account = GoogleSignIn.getLastSignedInAccount(mActivity);
                 task.getResult(ApiException.class);
 
                 loginPreferences.setTitle(R.string.dangxuat);
@@ -67,7 +71,7 @@ public class SettingFragment extends PreferenceFragmentCompat {
         includeMonHoc.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
-                MyApplication.updateTKBWidget(getActivity().getApplication());
+                MyApplication.updateTKBWidget(mActivity.getApplication());
                 return true;
             }
         });
@@ -81,7 +85,7 @@ public class SettingFragment extends PreferenceFragmentCompat {
                 int newVl = Integer.parseInt(newValue.toString());
                 int current = -1;
 
-                int nightModeFlags = getContext().getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+                int nightModeFlags = mActivity.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
                 if(nightModeFlags == Configuration.UI_MODE_NIGHT_YES){
                     current = 1;
                 }
@@ -91,25 +95,25 @@ public class SettingFragment extends PreferenceFragmentCompat {
 
                 if(oldVl == 0){
                     if(newVl == 1){
-                        ProcessPhoenix.triggerRebirth(getActivity());
+                        ProcessPhoenix.triggerRebirth(mActivity);
                     }
                     if(newVl == 2 && current != oldVl){
-                        ProcessPhoenix.triggerRebirth(getActivity());
+                        ProcessPhoenix.triggerRebirth(mActivity);
                     }
                 }
 
                 if(oldVl == 1){
                     if(newVl == 0){
-                        ProcessPhoenix.triggerRebirth(getActivity());
+                        ProcessPhoenix.triggerRebirth(mActivity);
                     }
                     if(newVl == 2 && current != oldVl){
-                        ProcessPhoenix.triggerRebirth(getActivity());
+                        ProcessPhoenix.triggerRebirth(mActivity);
                     }
                 }
 
                 if(oldVl == 2){
                     if(newVl != current){
-                        ProcessPhoenix.triggerRebirth(getActivity());
+                        ProcessPhoenix.triggerRebirth(mActivity);
                     }
                 }
 
@@ -128,7 +132,7 @@ public class SettingFragment extends PreferenceFragmentCompat {
                 }else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setTitle(R.string.canhbao)
-                            .setMessage("Xác nhận đăng xuất")
+                            .setMessage(R.string.xacnhandangxuat)
                             .setPositiveButton(R.string.dangxuat, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -152,17 +156,22 @@ public class SettingFragment extends PreferenceFragmentCompat {
         });
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mActivity = (Activity) context;
+    }
+
     private void signOut(){
 
         gsc.signOut();
-        account = GoogleSignIn.getLastSignedInAccount(getActivity());
+        account = GoogleSignIn.getLastSignedInAccount(mActivity);
 
         loginPreferences.setTitle(R.string.dangnhap);
         SharePreferencesManager.putEmail("");
         loginPreferences.setSummary(SharePreferencesManager.getEmail());
 
-        resumeActivity.reSume();
-        //startActivity(new Intent(getActivity(), LoginActivity.class));
+        resumeActivity.resume();
     }
 
     private void setTitle(){
@@ -176,13 +185,13 @@ public class SettingFragment extends PreferenceFragmentCompat {
 
     private void setControl() {
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        gsc = GoogleSignIn.getClient(getActivity(), gso);
-        account = GoogleSignIn.getLastSignedInAccount(getActivity());
+        gsc = GoogleSignIn.getClient(mActivity, gso);
+        account = GoogleSignIn.getLastSignedInAccount(mActivity);
 
         loginPreferences = findPreference("PREF_LOGIN");
     }
 
     public interface ResumeActivity{
-        void reSume();
+        void resume();
     }
 }

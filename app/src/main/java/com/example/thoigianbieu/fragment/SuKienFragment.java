@@ -1,6 +1,8 @@
 package com.example.thoigianbieu.fragment;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -46,6 +48,8 @@ public class SuKienFragment extends Fragment{
     List<SuKien> listSuKien;
     Button btnThemSuKien;
 
+    Activity mActivity;
+
     private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
@@ -55,6 +59,12 @@ public class SuKienFragment extends Fragment{
 
     public SuKienFragment(boolean isHome) {
         this.isHome = isHome;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mActivity = (Activity) context;
     }
 
     @Nullable
@@ -106,7 +116,7 @@ public class SuKienFragment extends Fragment{
             }
         }
 
-        ItemOffsetDecoration decoration = new ItemOffsetDecoration(getActivity(), R.dimen.item_decoration);
+        ItemOffsetDecoration decoration = new ItemOffsetDecoration(mActivity, R.dimen.item_decoration);
         rcvSuKien.addItemDecoration(decoration);
 
         loadData();
@@ -156,9 +166,9 @@ public class SuKienFragment extends Fragment{
         Calendar calendar2 = (Calendar) calendar1.clone();
         calendar2.add(Calendar.DATE, 1);
         if(isHome){
-            listSuKien = SuKienDatabase.getInstance(getActivity()).suKienDao().getListSuKien(calendar1, calendar2);
+            listSuKien = SuKienDatabase.getInstance(mActivity).suKienDao().getListSuKien(calendar1, calendar2);
         } else {
-            listSuKien = SuKienDatabase.getInstance(getActivity()).suKienDao().getListSuKien();
+            listSuKien = SuKienDatabase.getInstance(mActivity).suKienDao().getListSuKien();
         }
         adaptter.setData(listSuKien);
     }
@@ -196,7 +206,7 @@ public class SuKienFragment extends Fragment{
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle(R.string.canhbao)
-                        .setMessage("Xác nhận xoá sự kiện này")
+                        .setMessage(R.string.xacnhanxoasukien)
                         .setPositiveButton(R.string.xoa, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

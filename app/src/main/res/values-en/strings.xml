@@ -123,4 +123,5 @@
     <string name="themthoikhoabieu">Add class chedule</string>
     <string name="themsukien">Add event</string>
     <string name="chuathem">Not set</string>
+    <string name="thoigianmonhocdahet">This subject was ended</string>
 </resources>

@@ -2,6 +2,8 @@ package com.example.thoigianbieu.fragment;
 
 import static android.content.Context.WINDOW_SERVICE;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -41,9 +43,16 @@ public class ThoiKhoaBieuFragment extends Fragment {
     ThoiKhoaBieuAdapter thoiKhoaBieuAdapter;
     NgayHocManager ngayHocManager;
     FloatingActionButton btnThemNgayHoc;
+    Activity mActivity;
 
     public ThoiKhoaBieuFragment(boolean isHome) {
         this.isHome = isHome;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mActivity = (Activity) context;
     }
 
     @Nullable
@@ -94,7 +103,7 @@ public class ThoiKhoaBieuFragment extends Fragment {
         }
 
 
-        ItemOffsetDecoration decoration = new ItemOffsetDecoration(getActivity(), R.dimen.item_decoration);
+        ItemOffsetDecoration decoration = new ItemOffsetDecoration(mActivity, R.dimen.item_decoration);
         rcvThoiKhoaBieu.addItemDecoration(decoration);
 
         rcvThoiKhoaBieu.setAdapter(thoiKhoaBieuAdapter);
@@ -127,13 +136,13 @@ public class ThoiKhoaBieuFragment extends Fragment {
             });
             @Override
             public void onClick(View v) {
-               dialog.show(getActivity().getFragmentManager(), "addngayhoc");
+               dialog.show(mActivity.getFragmentManager(), "addngayhoc");
             }
         });
     }
 
     private int getRotation(){
-        Display display = ((WindowManager) getActivity().getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
+        Display display = ((WindowManager) mActivity.getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
         return display.getRotation();
     }
 
@@ -154,7 +163,7 @@ public class ThoiKhoaBieuFragment extends Fragment {
         thoiKhoaBieuAdapter = new ThoiKhoaBieuAdapter(getActivity(), isHome, new ThoiKhoaBieuAdapter.iClickAddData() {
             @Override
             public void addData() {
-                dialog.show(getActivity().getFragmentManager(), "addNH");
+                dialog.show(mActivity.getFragmentManager(), "addNH");
             }
         });
         btnThemNgayHoc = view.findViewById(R.id.btn_themngayhoc);
