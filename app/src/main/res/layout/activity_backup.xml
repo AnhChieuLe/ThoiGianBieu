@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BackupActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="50dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/developerName"
+                android:layout_margin="5dp"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/developerEmail"
+                android:textSize="16sp"
+                android:layout_margin="5dp" />
+            <android.widget.Button
+                android:id="@+id/btn_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/button_style"
+                android:text="@string/dangxuat"
+                android:layout_margin="10dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="25dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_last_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/saoluulancuoi"
+            android:textSize="16sp"
+            android:layout_centerInParent="true"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="10"
+            android:orientation="horizontal"
+            android:layout_margin="15dp"
+            android:layout_alignParentBottom="true">
+            <android.widget.Button
+                android:id="@+id/btn_khoiphuc"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                style="@style/button_style"
+                android:text="@string/khoiphuc"
+                android:layout_margin="25dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"/>
+            <android.widget.Button
+                android:id="@+id/btn_saoluu"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                style="@style/button_style"
+                android:text="@string/saoluu"
+                android:layout_margin="25dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"/>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

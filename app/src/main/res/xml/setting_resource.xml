@@ -14,7 +14,8 @@
             android:summary="@string/saoluulancuoi">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:targetPackage="com.example.thoigianbieu"/>
+                android:targetPackage="com.example.thoigianbieu"
+                android:targetClass="com.example.thoigianbieu.BackupActivity"/>
         </Preference>
     </PreferenceCategory>
 

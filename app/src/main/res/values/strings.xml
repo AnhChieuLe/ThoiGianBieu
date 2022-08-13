@@ -162,4 +162,6 @@
     <string name="sukiendangdienra">Sự kiện đang diễn ra</string>
     <string name="saoluulancuoi">Sao lưu lần cuối 15/08 - 22:45</string>
     <string name="loginwithgoogle">Đăng nhập bằng tài khoản Google</string>
+    <string name="khoiphuc">Khôi phục</string>
+    <string name="saoluu">Sao lưu</string>
 </resources>
