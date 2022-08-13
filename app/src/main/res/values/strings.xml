@@ -160,4 +160,6 @@
     <string name="thoigianketthucphailonhonbatdau">Thời gian kết thúc phải lớn hơn thời gian bắt đầu</string>
     <string name="sukiendaketthuc">Sự kiện đã kết thúc</string>
     <string name="sukiendangdienra">Sự kiện đang diễn ra</string>
+    <string name="saoluulancuoi">Sao lưu lần cuối 15/08 - 22:45</string>
+    <string name="loginwithgoogle">Đăng nhập bằng tài khoản Google</string>
 </resources>

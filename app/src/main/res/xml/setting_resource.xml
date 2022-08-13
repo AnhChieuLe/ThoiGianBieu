@@ -6,7 +6,15 @@
         android:title="@string/taikhoanvasaoluu">
         <Preference
             android:key="PREF_LOGIN"
-            android:title="Đăng nhập">
+            android:title="@string/dangnhap"
+            android:summary="@string/loginwithgoogle">
+        </Preference>
+        <Preference
+            android:title="Sao lưu và khôi phục"
+            android:summary="@string/saoluulancuoi">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:targetPackage="com.example.thoigianbieu"/>
         </Preference>
     </PreferenceCategory>
 
