@@ -46,7 +46,7 @@
                 android:text="@string/monhoc1_demo"
                 android:gravity="start"
                 android:textSize="16sp"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="10dp"
                 android:singleLine="true"/>
         </LinearLayout>
         <com.google.android.material.divider.MaterialDivider
@@ -78,7 +78,7 @@
                 android:text="@string/monhoc2_demo"
                 android:gravity="start"
                 android:textSize="16sp"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="10dp"
                 android:singleLine="true"/>
         </LinearLayout>
     </LinearLayout>

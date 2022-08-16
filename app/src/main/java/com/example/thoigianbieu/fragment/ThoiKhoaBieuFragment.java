@@ -110,20 +110,6 @@ public class ThoiKhoaBieuFragment extends Fragment {
     }
 
     private void setButton(){
-        btnThemNgayHoc.hide();
-        if(!isHome){
-            rcvThoiKhoaBieu.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                    super.onScrolled(recyclerView, dx, dy);
-                    if(dy<0){
-                        btnThemNgayHoc.show();
-                    }else {
-                        btnThemNgayHoc.hide();
-                    }
-                }
-            });
-        }
         btnThemNgayHoc.setOnClickListener(new View.OnClickListener() {
             final DialogThemNgayHocFragment dialog = new DialogThemNgayHocFragment(new DialogThemNgayHocFragment.LoadData() {
                 @Override
@@ -164,6 +150,16 @@ public class ThoiKhoaBieuFragment extends Fragment {
             @Override
             public void addData() {
                 dialog.show(mActivity.getFragmentManager(), "addNH");
+            }
+
+            @Override
+            public void hideButton() {
+                btnThemNgayHoc.hide();
+            }
+
+            @Override
+            public void showButton() {
+                btnThemNgayHoc.show();
             }
         });
         btnThemNgayHoc = view.findViewById(R.id.btn_themngayhoc);

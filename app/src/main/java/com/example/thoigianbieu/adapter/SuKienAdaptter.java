@@ -1,6 +1,7 @@
 package com.example.thoigianbieu.adapter;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,8 @@ public class SuKienAdaptter extends RecyclerView.Adapter<SuKienAdaptter.SuKienVi
     public interface ItemClick{
         void clickItem(SuKien suKien);
         void clickAdd();
+        void hideButton();
+        void showButton();
     }
 
     @Override
@@ -67,9 +70,9 @@ public class SuKienAdaptter extends RecyclerView.Adapter<SuKienAdaptter.SuKienVi
                 }
             });
             holder.btnAdd.setText(R.string.themsukien);
-            if(isHome){
-                holder.cardAdd.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
-            }
+//            if(isHome){
+//                holder.cardAdd.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
+//            }
         }else {
             SuKien suKien = listSukien.get(position);
             holder.cardSuKien.setOnClickListener(new View.OnClickListener() {
@@ -86,13 +89,26 @@ public class SuKienAdaptter extends RecyclerView.Adapter<SuKienAdaptter.SuKienVi
     }
 
     @Override
-    public int getItemCount() {
-        if(isHome){
-            return getCount()==0?1:getCount();
-        }else {
-            return getCount()+1;
-        }
+    public void onViewAttachedToWindow(@NonNull SuKienViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+        if(holder.cardAdd == null)  return;
+        if(!isHome) return;
 
+        itemClick.hideButton();
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(@NonNull SuKienViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        if(holder.cardAdd == null)  return;
+        if(!isHome) return;
+
+        itemClick.showButton();
+    }
+
+    @Override
+    public int getItemCount() {
+        return getCount()+1;
     }
 
     private int getCount(){

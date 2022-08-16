@@ -15,6 +15,9 @@ public interface NgayHocDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertNgayHoc(NgayHoc ngayHoc);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertNgayHoc(List<NgayHoc> list);
+
     @Query("SELECT * FROM ngayhoc")
     List<NgayHoc> getListNgayHoc();
 

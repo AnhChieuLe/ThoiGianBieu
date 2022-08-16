@@ -62,7 +62,6 @@ public class ThoiKhoaBieuAdapter extends RecyclerView.Adapter<ThoiKhoaBieuAdapte
             holder.btnAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("add", "adData");
                     clickAddData.addData();
                 }
             });
@@ -110,12 +109,28 @@ public class ThoiKhoaBieuAdapter extends RecyclerView.Adapter<ThoiKhoaBieuAdapte
     }
 
     @Override
+    public void onViewDetachedFromWindow(@NonNull ThoiKhoaBieuViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        if(holder.btnAdd == null)   return;
+        clickAddData.showButton();
+    }
+
+    @Override
+    public void onViewAttachedToWindow(@NonNull ThoiKhoaBieuViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+        if(holder.btnAdd == null)   return;
+        clickAddData.hideButton();
+    }
+
+    @Override
     public int getItemCount() {
         return listNgayHoc.size()+1;
     }
 
     public interface iClickAddData{
         void addData();
+        void hideButton();
+        void showButton();
     }
 
     public static class ThoiKhoaBieuViewHolder extends RecyclerView.ViewHolder{

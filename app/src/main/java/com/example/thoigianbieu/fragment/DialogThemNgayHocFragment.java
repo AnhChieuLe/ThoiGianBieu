@@ -8,7 +8,10 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -24,14 +27,16 @@ import com.example.thoigianbieu.database.ngayhoc.NgayHoc;
 import com.example.thoigianbieu.database.ngayhoc.NgayHocDatabase;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 @SuppressLint("ValidFragment")
 public class DialogThemNgayHocFragment extends DialogFragment {
 
     TextView tvNgay;
-    EditText edtSang, edtChieu;
+    EditText edtSang, edtChieu, edtLapLai;
     Button btnThem, btnHuy;
 
     Calendar ngay;
@@ -66,15 +71,50 @@ public class DialogThemNgayHocFragment extends DialogFragment {
             }
         });
 
+        edtLapLai.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                String laplai = edtLapLai.getText().toString();
+                if(hasFocus){
+                    edtLapLai.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    edtLapLai.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)});
+                    laplai = laplai.replace(getString(R.string.tuan), "");
+                    edtLapLai.setText(laplai);
+                }else if(!laplai.equals("")){
+                    edtLapLai.setInputType(InputType.TYPE_CLASS_TEXT);
+                    edtLapLai.setFilters(new InputFilter[] {new InputFilter.LengthFilter(8)});
+                    int soTuan = Integer.parseInt(laplai);
+                    if(soTuan == 0) soTuan++;
+                    laplai = String.valueOf(soTuan);
+
+                    edtLapLai.setText(laplai);
+                    edtLapLai.append(getString(R.string.tuan));
+                }else {
+                    edtLapLai.setText("");
+                }
+            }
+        });
+
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NgayHoc ngayHoc = getNgayHoc();
-                if(ngayHoc!=null){
+                if(ngayHoc==null)   return;
+
+                String laplai = edtLapLai.getText().toString();
+                laplai = laplai.replace(getString(R.string.tuan), "");
+                int soTuan = Integer.parseInt(laplai);
+                int i = 0;
+                do{
                     NgayHocDatabase.getInstance(getActivity()).ngayHocDao().insertNgayHoc(ngayHoc);
-                    loadData.loadData();
-                    getDialog().dismiss();
-                }
+                    i++;
+                    Calendar ngay = ngayHoc.getNgayHoc();
+                    ngay.add(Calendar.WEEK_OF_YEAR, 1);
+                    ngayHoc.setNgayHoc(ngay);
+                }while (i < soTuan);
+
+                loadData.loadData();
+                getDialog().dismiss();
             }
         });
 
@@ -122,7 +162,7 @@ public class DialogThemNgayHocFragment extends DialogFragment {
         DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int y, int m, int d) {
-                SimpleDateFormat format = new SimpleDateFormat("EEEE, dd/MM/yyyy", Locale.getDefault());
+                SimpleDateFormat format = new SimpleDateFormat("EEEE, dd/MM", Locale.getDefault());
                 calendar.set(y, m, d);
 
                 boolean isExist = NgayHocDatabase.getInstance(getActivity()).ngayHocDao().getNgayHoc(calendar) != null;
@@ -136,6 +176,10 @@ public class DialogThemNgayHocFragment extends DialogFragment {
                 }
 
                 tvDate.setText(format.format(calendar.getTime()));
+                if(edtLapLai.getText().toString().equals("")){
+                    edtLapLai.setText("1");
+                    edtLapLai.append(getString(R.string.tuan));
+                }
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE));
         datePickerDialog.getWindow().setBackgroundDrawableResource(R.drawable.backgroud_dialog);
@@ -147,6 +191,7 @@ public class DialogThemNgayHocFragment extends DialogFragment {
         tvNgay = decorView.findViewById(R.id.tv_ngayhoc_ngay);
         edtSang = decorView.findViewById(R.id.edt_ngayhoc_monhocsang);
         edtChieu = decorView.findViewById(R.id.edt_ngayhoc_monhocchieu);
+        edtLapLai = decorView.findViewById(R.id.edt_ngayhoc_laplai);
         btnThem  = decorView.findViewById(R.id.btn_ngayhoc_them);
         btnHuy  = decorView.findViewById(R.id.btn_ngayhoc_huy);
 

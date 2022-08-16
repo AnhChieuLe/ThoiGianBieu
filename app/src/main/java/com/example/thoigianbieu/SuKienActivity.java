@@ -208,12 +208,7 @@ public class SuKienActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().trim().equals("")){
-                    itemSave.setVisible(false);
-                }
-                else {
-                    itemSave.setVisible(true);
-                }
+                itemSave.setVisible(!s.toString().trim().equals(""));
             }
         });
     }

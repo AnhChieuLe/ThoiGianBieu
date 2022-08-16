@@ -31,9 +31,7 @@ public class NgayHocManager {
         List<MonHoc> listMH = MonHocDatabase.getInstance(context).monHocDAO().getListMonHoc();
         List<NgayHoc> listFromMH = new ArrayList<>(convert(listMH));
 
-        if(listMH.isEmpty()){
-            return;
-        }
+        if(listMH.isEmpty())    return;
 
         if (listNH.isEmpty()){
             listNH = listFromMH;
@@ -71,7 +69,6 @@ public class NgayHocManager {
         Calendar min = (Calendar) Collections.min(listNgay).clone(); Calendar index = (Calendar) min.clone();
         Calendar max = (Calendar) Collections.max(listNgay).clone();
 
-        List<NgayHoc> listAdd = new ArrayList<>();
         while (min.compareTo(max) < 0){
             if(!isExist(new NgayHoc(min))){
                 listNH.add(new NgayHoc(min));

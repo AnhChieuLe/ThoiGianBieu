@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 @Entity(tableName = "sukien")
@@ -21,7 +22,6 @@ public class SuKien implements Comparable, Serializable {
     private Calendar ngayBatDau;
     private Calendar ngayKetThuc;
     private long nhacNho;
-    @NonNull
     private boolean status;
 
     public SuKien(@NonNull String tieuDe, @NonNull String noiDung, @NonNull Calendar ngayBatDau, Calendar ngayKetThuc, long nhacNho) {
@@ -118,13 +118,13 @@ public class SuKien implements Comparable, Serializable {
             stringBuilder.append("ngày mai, ");
         }else if(Calendar.getInstance().get(Calendar.WEEK_OF_YEAR) == ngayBatDau.get(Calendar.WEEK_OF_YEAR)
                 && Calendar.getInstance().get(Calendar.YEAR) == ngayBatDau.get(Calendar.YEAR)){
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE", Locale.getDefault());
             stringBuilder.append(simpleDateFormat.format(ngayBatDau.getTime())).append(", ");
         }else {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM", Locale.getDefault());
             stringBuilder.append(simpleDateFormat.format(ngayBatDau.getTime())).append(" - ");
         }
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm", Locale.getDefault());
         stringBuilder.append(format.format(ngayBatDau.getTime()));
 
         return stringBuilder.substring(0,1).toUpperCase() + stringBuilder.substring(1);
@@ -149,10 +149,5 @@ public class SuKien implements Comparable, Serializable {
                 && getNoiDung().equals(suKien.getNoiDung())
                 && getNgayBatDau().equals(suKien.getNgayBatDau())
                 && getNgayKetThuc().equals(suKien.getNgayKetThuc());
-    }
-
-    @Override
-    public int hashCode() {
-        return 0;
     }
 }

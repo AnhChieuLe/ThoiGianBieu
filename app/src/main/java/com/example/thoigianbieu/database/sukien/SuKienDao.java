@@ -14,6 +14,9 @@ public interface SuKienDao {
     @Insert
     void insertSuKien(SuKien suKien);
 
+    @Insert
+    void insertSuKien(List<SuKien> list);
+
     @Query("SELECT * FROM sukien")
     List<SuKien> getListSuKien();
 

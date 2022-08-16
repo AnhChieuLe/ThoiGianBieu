@@ -21,10 +21,29 @@
             android:gravity="center"
             android:layout_marginBottom="25dp"/>
 
-        <TextView
-            android:id="@+id/tv_ngayhoc_ngay"
-            style="@style/edittext_style"
-            android:hint="@string/chonngayhoc"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:id="@+id/tv_ngayhoc_ngay"
+                style="@style/edittext_style"
+                android:layout_width="0dp"
+                android:layout_weight="6"
+                android:layout_marginBottom="0dp"
+                android:hint="@string/chonngayhoc"
+                android:layout_marginEnd="5dp"/>
+            <EditText
+                android:id="@+id/edt_ngayhoc_laplai"
+                style="@style/edittext_style"
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_marginBottom="0dp"
+                android:hint="@string/laplai"
+                android:layout_marginStart="5dp" />
+        </LinearLayout>
 
         <EditText
             android:id="@+id/edt_ngayhoc_monhocsang"

@@ -74,7 +74,7 @@ public class SuKienFragment extends Fragment{
         setControl(view);
 
         setRecyclerView();
-        hideButton();
+
         setOnBottomButtonClick();
 
         return view;
@@ -123,15 +123,6 @@ public class SuKienFragment extends Fragment{
         rcvSuKien.setAdapter(adaptter);
     }
 
-    private void hideButton(){
-        rcvSuKien.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-            }
-        });
-    }
-
     private void setControl(View view) {
         rcvSuKien = view.findViewById(R.id.rcv_sukien);
         adaptter = new SuKienAdaptter(new SuKienAdaptter.ItemClick() {
@@ -143,6 +134,16 @@ public class SuKienFragment extends Fragment{
             public void clickAdd() {
                 Intent intent = new Intent(getActivity(), SuKienActivity.class);
                 activityResultLauncher.launch(intent);
+            }
+
+            @Override
+            public void hideButton() {
+                btnThemSuKien.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void showButton() {
+                btnThemSuKien.setVisibility(View.VISIBLE);
             }
         }, isHome);
         btnThemSuKien = view.findViewById(R.id.btn_sukien_themsukien);

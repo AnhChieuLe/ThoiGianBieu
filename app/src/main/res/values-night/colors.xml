@@ -13,10 +13,10 @@
     <color name="text_color">#F5F5F5</color>
 
     <color name="gray">#AAAAAA</color>
-    <color name="primary_yellow">#CDAE00</color>
-    <color name="normal_yellow">#C3B360</color>
-    <color name="text_title_yellow">#C5A600</color>
+    <color name="primary_yellow">#B59A00</color>
+    <color name="normal_yellow">#978E60</color>
+    <color name="text_title_yellow">#A18900</color>
     <color name="stroke_color">#6A6A6A</color>
-    <color name="date_chunhat">#FF6161</color>
+    <color name="date_chunhat">#B64343</color>
     <color name="red">#FF0000</color>
 </resources>
