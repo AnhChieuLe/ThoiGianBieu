@@ -130,7 +130,7 @@ public class NgayHoc implements Comparator<NgayHoc>, Comparable<NgayHoc>,Seriali
     }
 
     public boolean isSunDay(){
-        return this.ngayHoc.get(Calendar.DAY_OF_WEEK) == 1;
+            return this.ngayHoc.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY;
     }
 
     public String getStringNgayHocInWeek(Context context){

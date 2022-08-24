@@ -18,7 +18,6 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/dialog_padding">
             <TextView
-                android:id="@+id/tv_monhoc_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -65,7 +64,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linear_monhoc_dialog_BuoiHoc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"

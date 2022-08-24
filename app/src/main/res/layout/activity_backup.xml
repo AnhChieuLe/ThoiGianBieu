@@ -21,7 +21,6 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
             <TextView
-                android:id="@+id/tv_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/developerName"
@@ -29,14 +28,12 @@
                 android:textStyle="bold"
                 android:textSize="20sp" />
             <TextView
-                android:id="@+id/tv_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/developerEmail"
                 android:textSize="16sp"
                 android:layout_margin="5dp" />
             <android.widget.Button
-                android:id="@+id/btn_logout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/button_style"
@@ -47,7 +44,6 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tv_last_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -63,7 +59,6 @@
             android:layout_margin="15dp"
             android:layout_alignParentBottom="true">
             <android.widget.Button
-                android:id="@+id/btn_khoiphuc"
                 android:layout_width="0dp"
                 android:layout_weight="5"
                 android:layout_height="wrap_content"
@@ -73,7 +68,6 @@
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"/>
             <android.widget.Button
-                android:id="@+id/btn_saoluu"
                 android:layout_width="0dp"
                 android:layout_weight="5"
                 android:layout_height="wrap_content"

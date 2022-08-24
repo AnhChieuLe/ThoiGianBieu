@@ -30,7 +30,4 @@
     </style>
 
     <!-- Theme.AppCompat.Light.Dialog -->
-    <style name="DialogTheme" parent="Theme.AppCompat.DayNight.Dialog">
-        <item name="colorAccent">@color/text_title_yellow</item>
-    </style>
 </resources>

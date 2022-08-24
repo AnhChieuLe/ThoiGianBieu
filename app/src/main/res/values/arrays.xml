@@ -21,32 +21,6 @@
         <item>1</item>
         <item>2</item>
     </string-array>
-    
-    <string-array name="setting_language_entries">
-        <item>@string/tiengviet</item>
-        <item>@string/tienganh</item>
-        <item>@string/theohethong</item>
-    </string-array>
-    
-    <string-array name="setting_language_values">
-        <item>vi</item>
-        <item>en</item>
-        <item>sys</item>
-    </string-array>
-
-    <string-array name="setting_color_entries">
-        <item>@string/vang</item>
-        <item>@string/maudo</item>
-        <item>@string/xanhla</item>
-        <item>@string/xanhduong</item>
-    </string-array>
-
-    <string-array name="setting_color_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
 
     <string-array name="sukien_column_entries_values">
         <item>2</item>
