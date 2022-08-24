@@ -19,7 +19,6 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.thoigianbieu.R;
 import com.example.thoigianbieu.database.monhoc.MonHoc;
@@ -131,7 +130,7 @@ public class DialogThemMonHocFragment extends DialogFragment {
             }
         }
         setSoTuan(listBuoiHoc);
-        btnThem.setText(R.string.capnhat);
+        btnThem.setText(R.string.update);
     }
 
     private MonHoc getData(){
@@ -197,7 +196,7 @@ public class DialogThemMonHocFragment extends DialogFragment {
     private boolean checkTime(){
         final boolean[] result = {false};
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(getString(R.string.thongbao))
+        builder.setTitle(getString(R.string.notification))
                 .setMessage(R.string.confirm_end_monhoc)
                 .setPositiveButton(R.string.van_them, new DialogInterface.OnClickListener() {
                     @Override
@@ -325,7 +324,7 @@ public class DialogThemMonHocFragment extends DialogFragment {
                     }
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setTitle(R.string.trung_lich)
+                    builder.setTitle(R.string.duplicate_subject)
                             .setMessage(mhBT.substring(0, mhBT.lastIndexOf("\n")).toString())
                             .setPositiveButton(R.string.van_them, new DialogInterface.OnClickListener() {
                                 @Override
@@ -379,8 +378,8 @@ public class DialogThemMonHocFragment extends DialogFragment {
 
             soTuan = (int)Math.ceil((double) soBuoi/listBuoiHoc.size());
 
-            tvSoBuoi.setText(soBuoi + getString(R.string.buoi));
-            tvSoTuan.setText(soTuan + getString(R.string.tuan));
+            tvSoBuoi.setText(soBuoi + getString(R.string.session));
+            tvSoTuan.setText(soTuan + getString(R.string.week));
         }catch (Exception e){
             //do nothing
         }

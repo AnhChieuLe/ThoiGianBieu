@@ -24,7 +24,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.example.thoigianbieu.database.sukien.SuKien;
 import com.example.thoigianbieu.database.sukien.SuKienDatabase;
@@ -118,7 +117,7 @@ public class SuKienActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.canhbao)
                     .setMessage(R.string.sukienchualuu)
-                    .setPositiveButton(R.string.khong_luu, new DialogInterface.OnClickListener() {
+                    .setPositiveButton(R.string.dontsave, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             isSave = true;
@@ -467,7 +466,7 @@ public class SuKienActivity extends AppCompatActivity {
     public void setNotification(SuKien suKien){
         if(suKien.getNgayBatDau().compareTo(Calendar.getInstance()) <= 0){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.thongbao)
+            builder.setTitle(R.string.notification)
                     .setMessage(suKien.getNgayKetThuc().compareTo(Calendar.getInstance()) <= 0?R.string.sukiendaketthuc:R.string.sukiendangdienra)
                     .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         @Override

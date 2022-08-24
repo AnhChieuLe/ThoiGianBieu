@@ -34,7 +34,7 @@
                 android:inputType="textCapSentences|textMultiLine"
                 android:paddingStart="0dp"
                 android:paddingEnd="0dp"
-                android:hint="@string/sukien_tieude"
+                android:hint="@string/sukien_title"
                 android:textColor="@color/text_title_yellow"
                 android:textColorHint="@color/text_title_yellow"
                 android:textSize="32sp"
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:alpha="0.75"
             android:layout_marginTop="15dp"
-            android:text="@string/sukien_ngaybatdau"
+            android:text="@string/sukien_start_date"
             android:textStyle="bold" />
 
         <TextView
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:alpha="0.75"
             android:layout_marginTop="10dp"
-            android:text="@string/sukien_ngayketthuc"
+            android:text="@string/sukien_end_date"
             android:textStyle="bold" />
         <TextView
             android:id="@+id/tv_sukien_activity_nhacnho"
@@ -72,7 +72,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="15dp"
             android:alpha="0.75"
-            android:text="@string/sukien_nhacnho"
+            android:text="@string/sukien_notification"
             android:textStyle="bold" />
 
         <com.google.android.material.divider.MaterialDivider
@@ -99,7 +99,7 @@
             android:paddingStart="0dp"
             android:paddingEnd="0dp"
             android:gravity="top"
-            android:hint="@string/sukien_noidung"
+            android:hint="@string/sukien_content"
             android:lineSpacingExtra="5dp"
             android:alpha="0.75"/>
     </com.google.android.material.textfield.TextInputLayout>

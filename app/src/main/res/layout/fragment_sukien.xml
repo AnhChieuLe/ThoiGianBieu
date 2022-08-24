@@ -20,7 +20,7 @@
         style="@style/button_style"
         android:background="@drawable/custom_button_ok"
         android:drawableStart="@drawable/ic_add"
-        android:text="@string/them_su_kien"
+        android:text="@string/add_event"
         android:textAllCaps="false"
         android:textStyle="bold"
         android:textSize="14sp"

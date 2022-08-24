@@ -8,7 +8,6 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -20,16 +19,13 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.thoigianbieu.R;
 import com.example.thoigianbieu.database.ngayhoc.NgayHoc;
 import com.example.thoigianbieu.database.ngayhoc.NgayHocDatabase;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
 @SuppressLint("ValidFragment")
@@ -78,7 +74,7 @@ public class DialogThemNgayHocFragment extends DialogFragment {
                 if(hasFocus){
                     edtLapLai.setInputType(InputType.TYPE_CLASS_NUMBER);
                     edtLapLai.setFilters(new InputFilter[] {new InputFilter.LengthFilter(2)});
-                    laplai = laplai.replace(getString(R.string.tuan), "");
+                    laplai = laplai.replace(getString(R.string.week), "");
                     edtLapLai.setText(laplai);
                 }else if(!laplai.equals("")){
                     edtLapLai.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -88,7 +84,7 @@ public class DialogThemNgayHocFragment extends DialogFragment {
                     laplai = String.valueOf(soTuan);
 
                     edtLapLai.setText(laplai);
-                    edtLapLai.append(getString(R.string.tuan));
+                    edtLapLai.append(getString(R.string.week));
                 }else {
                     edtLapLai.setText("");
                 }
@@ -102,7 +98,7 @@ public class DialogThemNgayHocFragment extends DialogFragment {
                 if(ngayHoc==null)   return;
 
                 String laplai = edtLapLai.getText().toString();
-                laplai = laplai.replace(getString(R.string.tuan), "");
+                laplai = laplai.replace(getString(R.string.week), "");
                 int soTuan = Integer.parseInt(laplai);
                 int i = 0;
                 do{
@@ -178,7 +174,7 @@ public class DialogThemNgayHocFragment extends DialogFragment {
                 tvDate.setText(format.format(calendar.getTime()));
                 if(edtLapLai.getText().toString().equals("")){
                     edtLapLai.setText("1");
-                    edtLapLai.append(getString(R.string.tuan));
+                    edtLapLai.append(getString(R.string.week));
                 }
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE));

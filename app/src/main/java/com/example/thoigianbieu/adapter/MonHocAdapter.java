@@ -2,13 +2,10 @@ package com.example.thoigianbieu.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.Resources;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -17,11 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.thoigianbieu.R;
 import com.example.thoigianbieu.database.monhoc.MonHoc;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 public class MonHocAdapter extends RecyclerView.Adapter<MonHocAdapter.MonHocViewHolder> {
 
@@ -69,13 +62,13 @@ public class MonHocAdapter extends RecyclerView.Adapter<MonHocAdapter.MonHocView
 
         holder.tenMonHoc.setText(monHoc.getTenMonHoc());
 
-        holder.tenGiangVien.setText(R.string.giang_vien);
+        holder.tenGiangVien.setText(R.string.teacher);
         holder.tenGiangVien.append(monHoc.getTenGiangVien().equals("")?context.getString(R.string.chuathem):monHoc.getTenGiangVien());
 
-        holder.phongHoc.setText(R.string.phong_hoc);
+        holder.phongHoc.setText(R.string.room);
         holder.phongHoc.append(monHoc.getPhongHoc().equals("")?context.getString(R.string.chuathem):monHoc.getPhongHoc());
 
-        holder.buoiHoc.setText(R.string.thoi_gian);
+        holder.buoiHoc.setText(R.string.time);
         holder.buoiHoc.append(monHoc.getStringBuoiHoc(context));
     }
 

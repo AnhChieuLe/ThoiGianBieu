@@ -55,29 +55,29 @@
     <string name="them">Thêm</string>
     <string name="van_them">Vẫn thêm</string>
     <string name="huy">Hủy</string>
-    <string name="capnhat">Cập nhật</string>
-    <string name="thongbao">Thông báo</string>
+    <string name="update">Cập nhật</string>
+    <string name="notification">Thông báo</string>
     <string name="luu">Lưu</string>
     <string name="xoa">Xóa</string>
     <string name="ok">OK</string>
-    <string name="khong_luu">Không lưu</string>
-    <string name="them_su_kien">Thêm sự kiện mới</string>
+    <string name="dontsave">Không lưu</string>
+    <string name="add_event">Thêm sự kiện mới</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="sukien_tieude">Nhập tiêu đề</string>
-    <string name="sukien_noidung">Nhập nội dung sự kiện</string>
-    <string name="sukien_ngaybatdau">Bắt đầu lúc</string>
-    <string name="sukien_ngayketthuc">Kết thúc lúc</string>
-    <string name="sukien_nhacnho">Nhắc nhở trước: 0 phút</string>
+    <string name="sukien_title">Nhập tiêu đề</string>
+    <string name="sukien_content">Nhập nội dung sự kiện</string>
+    <string name="sukien_start_date">Bắt đầu lúc</string>
+    <string name="sukien_end_date">Kết thúc lúc</string>
+    <string name="sukien_notification">Nhắc nhở trước: 0 phút</string>
 
-    <string name="giang_vien">"Giảng viên: "</string>
-    <string name="phong_hoc">"Phòng học: "</string>
-    <string name="thoi_gian">"Thời gian: "</string>
-    <string name="buoi">" buổi"</string>
-    <string name="tuan">" tuần"</string>
-    <string name="trung_lich">Trùng lịch học với môn học khác</string>
+    <string name="teacher">"Giảng viên: "</string>
+    <string name="room">"Phòng học: "</string>
+    <string name="time">"Thời gian: "</string>
+    <string name="session">" buổi"</string>
+    <string name="week">" tuần"</string>
+    <string name="duplicate_subject">Trùng lịch học với môn học khác</string>
 
     <!--Thông báo-->
     <string name="channel_lichhoc">Lịch học</string>

@@ -5,7 +5,7 @@
         android:id="@+id/sukien_toolbar_notification"
         android:icon="@drawable/ic_notification"
         app:showAsAction="ifRoom"
-        android:title="@string/thongbao"/>
+        android:title="@string/notification"/>
     <item
         android:id="@+id/sukien_toolbar_save"
         android:icon="@drawable/ic_save"
