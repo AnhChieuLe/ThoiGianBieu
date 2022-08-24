@@ -13,6 +13,7 @@
     <string name="giaodientoi">Tối</string>
     <string name="theohethong">Theo hệ thống</string>
     <string name="homnay">"Hôm nay, "</string>
+    <string name="homnay2">Hôm nay</string>
     <string name="ngaymai">"Ngày mai, "</string>
     <string name="homqua">Hôm qua, "</string>
 
@@ -136,6 +137,7 @@
     <string name="khongdetrongtenmonhoc">Không để trống tên môn học</string>
     <string name="xacnhandangxuat">Xác nhận đăng xuất</string>
     <string name="xacnhanxoasukien">Xác nhận xoá sự kiện này</string>
+    <string name="xacnhanxoangayhoc">Xác nhận xoá ngày học này</string>
     <string name="saithoigian">Sai thời gian</string>
     <string name="thoigianketthucphailonhonbatdau">Thời gian kết thúc phải lớn hơn thời gian bắt đầu</string>
     <string name="sukiendaketthuc">Sự kiện đã kết thúc</string>

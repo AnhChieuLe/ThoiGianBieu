@@ -24,5 +24,6 @@
         android:textAllCaps="false"
         android:textStyle="bold"
         android:textSize="14sp"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"/>
 </RelativeLayout>

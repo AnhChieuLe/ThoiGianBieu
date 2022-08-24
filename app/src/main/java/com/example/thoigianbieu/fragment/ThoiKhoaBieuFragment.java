@@ -3,7 +3,9 @@ package com.example.thoigianbieu.fragment;
 import static android.content.Context.WINDOW_SERVICE;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -190,6 +192,7 @@ public class ThoiKhoaBieuFragment extends Fragment {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getBindingAdapterPosition();
+
                 NgayHoc ngayHoc = listNgayHoc.get(position);
                 NgayHocDatabase.getInstance(getActivity()).ngayHocDao().deleteNgayHoc(ngayHoc);
                 loadData();

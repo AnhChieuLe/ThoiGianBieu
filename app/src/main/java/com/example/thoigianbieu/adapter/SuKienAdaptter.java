@@ -73,9 +73,6 @@ public class SuKienAdaptter extends RecyclerView.Adapter<SuKienAdaptter.SuKienVi
                 }
             });
             holder.btnAdd.setText(R.string.themsukien);
-//            if(isHome){
-//                holder.cardAdd.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
-//            }
         }else {
             SuKien suKien = listSukien.get(position);
             holder.cardSuKien.setOnClickListener(new View.OnClickListener() {

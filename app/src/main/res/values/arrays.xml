@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="tkb_home_entries">
-        <item>@string/homnay</item>
+        <item>@string/homnay2</item>
         <item>@string/ngaymai</item>
     </string-array>
     

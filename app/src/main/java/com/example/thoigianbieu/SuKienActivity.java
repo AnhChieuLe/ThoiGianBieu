@@ -335,8 +335,6 @@ public class SuKienActivity extends AppCompatActivity {
                             case 4:
                                 setEditText();
                                 break;
-                            default:
-                                nhacNho = 0;
                         }
                         tv.setText(getString(R.string.nhactruoc, nhacNho));
                     }
@@ -480,7 +478,6 @@ public class SuKienActivity extends AppCompatActivity {
             return;
         }
 
-        save();
         setNhacNho(tvNhacNho);
 
         Intent intent = new Intent(this, NotificationReceiver.class);
