@@ -15,7 +15,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
-import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +23,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.thoigianbieu.database.sukien.SuKien;
 import com.example.thoigianbieu.database.sukien.SuKienDatabase;
@@ -49,14 +49,17 @@ public class SuKienActivity extends AppCompatActivity {
     Calendar ngayBatDau;
     Calendar ngayKetThuc;
     static int nhacNho;
-    boolean saved;
+    boolean isSave;
+    boolean isChange;
+    long id;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sukien);
 
-        setToobar();
+        setToolbar();
         setControl();
 
         getData();
@@ -69,7 +72,7 @@ public class SuKienActivity extends AppCompatActivity {
         checkNoiDung();
     }
 
-    private void setToobar(){
+    private void setToolbar(){
         toolbar = findViewById(R.id.toolbar_sukien);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -86,16 +89,8 @@ public class SuKienActivity extends AppCompatActivity {
         tvNgayKetThuc = findViewById(R.id.tv_sukien_activity_ketthuc);
         tvNhacNho = findViewById(R.id.tv_sukien_activity_nhacnho);
 
-        ngayBatDau = Calendar.getInstance();
-        ngayBatDau.set(Calendar.SECOND, 0);
-        ngayBatDau.set(Calendar.MILLISECOND, 0);
-
-        ngayKetThuc = Calendar.getInstance();
-        ngayKetThuc.set(Calendar.SECOND, 0);
-        ngayKetThuc.set(Calendar.MILLISECOND, 0);
-
         nhacNho = 0;
-        saved = false;
+        isSave = false;
     }
 
     @Override
@@ -107,7 +102,7 @@ public class SuKienActivity extends AppCompatActivity {
         itemDelete = menu.findItem(R.id.sukien_toolbar_delete);
         itemNotification = menu.findItem(R.id.sukien_toolbar_notification);
 
-        if(!saved){
+        if(!isSave){
            itemSave.setVisible(false);
            itemDelete.setVisible(false);
            itemNotification.setVisible(false);
@@ -118,32 +113,33 @@ public class SuKienActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(saved || (edtTieuDe.getText().toString().trim().equals("") && edtNoiDung.getText().toString().trim().equals(""))){
-            super.onBackPressed();
-            setResult(Result.RESULT_SAVE);
-            finish();
-        }else {
+        if(isChange){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.canhbao)
                     .setMessage(R.string.sukienchualuu)
                     .setPositiveButton(R.string.khong_luu, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            saved = true;
-                            builder.create().dismiss();
-                            onBackPressed();
+                            isSave = true;
+                            dialog.dismiss();
                             finish();
                         }
                     })
                     .setNegativeButton(R.string.huy, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            builder.create().dismiss();
+                            dialog.dismiss();
                         }
                     });
             AlertDialog dialog = builder.create();
             dialog.getWindow().setBackgroundDrawableResource(R.drawable.backgroud_dialog);
             dialog.show();
+            return;
+        }
+        if(isSave || (edtTieuDe.getText().toString().trim().equals("") && edtNoiDung.getText().toString().trim().equals(""))){
+            super.onBackPressed();
+            setResult(Result.RESULT_SAVE);
+            finish();
         }
     }
 
@@ -151,6 +147,9 @@ public class SuKienActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                break;
             case R.id.sukien_toolbar_save:
                 save();
                 break;
@@ -159,9 +158,6 @@ public class SuKienActivity extends AppCompatActivity {
                 break;
             case R.id.sukien_toolbar_notification:
                 setNotification(suKien);
-                break;
-            default:
-                onBackPressed();
                 break;
         }
 
@@ -173,25 +169,23 @@ public class SuKienActivity extends AppCompatActivity {
         Bundle bundle = intent.getBundleExtra("package");
         if(bundle != null){
             suKien = (SuKien) bundle.getSerializable("sukien");
-            saved = true;
+            isSave = true;
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private void setData(){
-        if(saved){
-            edtTieuDe.setText(suKien.getTieuDe());
-            edtNoiDung.setText(suKien.getNoiDung());
+        if(!isSave)  return;
+        edtTieuDe.setText(suKien.getTieuDe());
+        edtNoiDung.setText(suKien.getNoiDung());
 
-            ngayBatDau = suKien.getNgayBatDau();
-            ngayKetThuc = suKien.getNgayKetThuc();
+        ngayBatDau = suKien.getNgayBatDau();
+        ngayKetThuc = suKien.getNgayKetThuc();
 
-            SimpleDateFormat format = new SimpleDateFormat("HH:mm - dd/MM/yyyy", Locale.getDefault());
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm - dd/MM/yyyy", Locale.getDefault());
 
-            tvNgayBatDau.setText(getString(R.string.batdau) + format.format(ngayBatDau.getTime()));
-            tvNgayKetThuc.setText(getString(R.string.ketthuc) + format.format(ngayKetThuc.getTime()));
-            tvNhacNho.setText(getString(R.string.nhacnho) + suKien.getNhacNho() + getString(R.string.phut));
-        }
+        tvNgayBatDau.setText(getString(R.string.batdau, format.format(ngayBatDau.getTime())));
+        tvNgayKetThuc.setText(getString(R.string.ketthuc, format.format(ngayKetThuc.getTime())));
+        tvNhacNho.setText(getString(R.string.nhactruoc, suKien.getNhacNho()));
     }
 
     private void checkTitle(){
@@ -208,7 +202,13 @@ public class SuKienActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                itemSave.setVisible(!s.toString().trim().equals(""));
+                isChange = true;
+                if(edtNoiDung.getText() == null) return;
+                if(s.toString().trim().equals("")){
+                    itemSave.setVisible(false);
+                }else if(!edtNoiDung.getText().toString().trim().equals("")){
+                    itemSave.setVisible(true);
+                }
             }
         });
     }
@@ -226,41 +226,73 @@ public class SuKienActivity extends AppCompatActivity {
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
-                if (editable.toString().contains("- ")) {
-                    Editable ab = new SpannableStringBuilder(editable.toString().replace("- ", " • "));
-                    editable.replace(0, editable.length(), ab);
+            public void afterTextChanged(Editable s) {
+                isChange = true;
+                if(edtTieuDe.getText() == null) return;
+                if(s.toString().trim().equals("")){
+                    itemSave.setVisible(false);
+                }else if(!edtTieuDe.getText().toString().trim().equals("")){
+                    itemSave.setVisible(true);
                 }
             }
         });
     }
 
-    private void save(){
+    private void getSuKien(){
+        if(edtTieuDe.getText() == null || edtNoiDung.getText() == null) return;
         String title = edtTieuDe.getText().toString();
         String noidung = edtNoiDung.getText().toString();
 
-        if(!saved){
+        if(ngayBatDau == null)
+            ngayBatDau = Calendar.getInstance();
+        if(ngayKetThuc == null)
+            ngayKetThuc = Calendar.getInstance();
+
+        if(!isSave){
             suKien = new SuKien(title, noidung, ngayBatDau, ngayKetThuc, nhacNho);
-            SuKienDatabase.getInstance(this).suKienDao().insertSuKien(suKien);
         }else {
             suKien.setTieuDe(title);
             suKien.setNoiDung(noidung);
             suKien.setNgayBatDau(ngayBatDau);
             suKien.setNgayKetThuc(ngayKetThuc);
             suKien.setNhacNho(nhacNho);
-
-            SuKienDatabase.getInstance(this).suKienDao().updateSuKien(suKien);
         }
+    }
+
+    private void save(){
+        getSuKien();
 
         itemDelete.setVisible(true);
         itemNotification.setVisible(true);
 
-        saved = true;
+        isSave = true;
+        isChange = false;
+
+        id = SuKienDatabase.getInstance(this).suKienDao().insertSuKienWithResult(suKien);
+        suKien.setId((int) id);
     }
 
     private void delete(){
-        SuKienDatabase.getInstance(this).suKienDao().deleteSuKien(suKien);
-        onBackPressed();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.canhbao)
+                .setMessage(R.string.xacnhanxoasukien)
+                .setPositiveButton(R.string.xoa, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SuKienDatabase.getInstance(SuKienActivity.this).suKienDao().deleteSuKien(suKien);
+                        dialog.dismiss();
+                        SuKienActivity.super.onBackPressed();
+                    }
+                })
+                .setNegativeButton(R.string.huy, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.backgroud_dialog);
+        dialog.show();
     }
 
     private void setNhacNho(TextView tv){
@@ -290,7 +322,7 @@ public class SuKienActivity extends AppCompatActivity {
                             default:
                                 nhacNho = 0;
                         }
-                        tv.setText(getString(R.string.nhactruoc) + nhacNho + getString(R.string.phut));
+                        tv.setText(getString(R.string.nhactruoc, nhacNho));
                     }
                 });
         AlertDialog dialog = builder.create();
@@ -331,7 +363,6 @@ public class SuKienActivity extends AppCompatActivity {
         Calendar index = (Calendar)calendar.clone();
         //Set TimePickerDialog
         TimePickerDialog.OnTimeSetListener listenerTime = new TimePickerDialog.OnTimeSetListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
@@ -339,7 +370,7 @@ public class SuKienActivity extends AppCompatActivity {
                 calendar.set(Calendar.SECOND, 0);
                 calendar.set(Calendar.MILLISECOND, 0);
 
-                if(ngayBatDau.compareTo(ngayKetThuc) > 0){
+                if(ngayBatDau != null && ngayKetThuc != null && ngayBatDau.compareTo(ngayKetThuc) > 0){
                     AlertDialog.Builder builder = new AlertDialog.Builder(SuKienActivity.this);
                     String title = getResources().getString(R.string.saithoigian);
                     builder.setTitle(title)
@@ -355,11 +386,12 @@ public class SuKienActivity extends AppCompatActivity {
                     AlertDialog dialog = builder.create();
                     dialog.getWindow().setBackgroundDrawableResource(R.drawable.backgroud_dialog);
                     dialog.show();
-                }else {
-                    SimpleDateFormat format = new SimpleDateFormat("HH:mm - dd/MM/yyyy", Locale.getDefault());
-                    String str = getResources().getString(isBatDau?R.string.batdau:R.string.ketthuc);
-                    date.setText(str + format.format(calendar.getTime()));
+                    return;
                 }
+                SimpleDateFormat format = new SimpleDateFormat("HH:mm - dd/MM/yyyy", Locale.getDefault());
+                String str = getResources().getString(isBatDau?R.string.batdau:R.string.ketthuc, format.format(calendar.getTime()));
+                date.setText(str);
+                isChange = true;
             }
         };
         TimePickerDialog timePickerDialog = new TimePickerDialog(SuKienActivity.this, listenerTime,
@@ -390,6 +422,9 @@ public class SuKienActivity extends AppCompatActivity {
         tvNgayBatDau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ngayBatDau = Calendar.getInstance();
+                ngayBatDau.set(Calendar.SECOND, 0);
+                ngayBatDau.set(Calendar.MILLISECOND, 0);
                 chonNgay(tvNgayBatDau, ngayBatDau, true);
             }
         });
@@ -399,13 +434,16 @@ public class SuKienActivity extends AppCompatActivity {
         tvNgayKetThuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ngayKetThuc = Calendar.getInstance();
+                ngayKetThuc.set(Calendar.SECOND, 0);
+                ngayKetThuc.set(Calendar.MILLISECOND, 0);
                 chonNgay(tvNgayKetThuc, ngayKetThuc, false);
             }
         });
     }
 
     public void setNotification(SuKien suKien){
-        if(suKien.getNgayBatDau().compareTo(Calendar.getInstance()) < 0){
+        if(suKien.getNgayBatDau().compareTo(Calendar.getInstance()) <= 0){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(R.string.thongbao)
                     .setMessage(suKien.getNgayKetThuc().compareTo(Calendar.getInstance()) <= 0?R.string.sukiendaketthuc:R.string.sukiendangdienra)
@@ -421,6 +459,7 @@ public class SuKienActivity extends AppCompatActivity {
             return;
         }
 
+        save();
         setNhacNho(tvNhacNho);
 
         Intent intent = new Intent(this, NotificationReceiver.class);
@@ -431,6 +470,6 @@ public class SuKienActivity extends AppCompatActivity {
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        alarmManager.set(AlarmManager.RTC_WAKEUP, suKien.getNgayBatDau().getTimeInMillis() - nhacNho* 60000L - 10000, pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, suKien.getNgayBatDau().getTimeInMillis() - nhacNho* 60000L, pendingIntent);
     }
 }

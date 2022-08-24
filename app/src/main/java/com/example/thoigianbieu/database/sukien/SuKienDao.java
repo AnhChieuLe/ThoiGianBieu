@@ -3,6 +3,7 @@ package com.example.thoigianbieu.database.sukien;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -11,11 +12,11 @@ import java.util.List;
 
 @Dao
 public interface SuKienDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertSuKien(SuKien suKien);
 
-    @Insert
-    void insertSuKien(List<SuKien> list);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long insertSuKienWithResult(SuKien suKien);
 
     @Query("SELECT * FROM sukien")
     List<SuKien> getListSuKien();

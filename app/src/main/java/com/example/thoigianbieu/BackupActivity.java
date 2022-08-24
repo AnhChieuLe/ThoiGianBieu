@@ -58,12 +58,6 @@ public class BackupActivity extends AppCompatActivity {
         setLogoutButton();
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return super.onSupportNavigateUp();
-    }
-
     private void setToolbar(){
         setSupportActionBar(binding.toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);

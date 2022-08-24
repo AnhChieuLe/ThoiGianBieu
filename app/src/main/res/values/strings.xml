@@ -94,9 +94,9 @@
     <string name="channel_sukien">Sự kiện</string>
     <string name="channel_sukien_description">Các thông báo về sự kiện</string>
 
-    <string name="batdau">"Bắt đầu: "</string>
-    <string name="ketthuc">"Kết thúc: "</string>
-    <string name="nhacnho">"Nhắc nhở: "</string>
+    <string name="batdau">Bắt đầu: %s"</string>
+    <string name="ketthuc">Kết thúc: %s"</string>
+    <string name="nhacnho">Nhắc nhở: </string>
     <string name="phut">" phút"</string>
     <string name="themngayhoc">Thêm ngày học</string>
     <string name="chonngayhoc">Chọn ngày học</string>
@@ -142,7 +142,7 @@
     <string name="minute_15">15 phút</string>
     <string name="minute_30">30 phút</string>
     <string name="tuychinh">Tuỳ chỉnh</string>
-    <string name="nhactruoc">"Nhắc trước: "</string>
+    <string name="nhactruoc">Nhắc trước: %d phút</string>
     <string name="account_backup">Tài khoản và sao lưu</string>
     <string name="xinchao">Xin chào!</string>
     <string name="dangnhaptaikhoancuaban">Đăng nhập tài khoản của bạn</string>
@@ -160,7 +160,7 @@
     <string name="thoigianketthucphailonhonbatdau">Thời gian kết thúc phải lớn hơn thời gian bắt đầu</string>
     <string name="sukiendaketthuc">Sự kiện đã kết thúc</string>
     <string name="sukiendangdienra">Sự kiện đang diễn ra</string>
-    <string name="saoluulancuoi">Sao lưu lần cuối 15/08 - 22:45</string>
+    <string name="saoluulancuoi">Sao lưu lần cuối 15/08 – 22:45</string>
     <string name="loginwithgoogle">Đăng nhập bằng tài khoản Google</string>
     <string name="khoiphuc">Khôi phục</string>
     <string name="saoluu">Sao lưu</string>

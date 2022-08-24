@@ -97,12 +97,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(account == null){
-                    GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-                    GoogleSignInClient gsc = GoogleSignIn.getClient(MainActivity.this, gso);
-                    Intent intentLogin = gsc.getSignInIntent();
-                    activityResultLauncher.launch(intentLogin);
-                }
+                if(account != null) return;
+                GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+                GoogleSignInClient gsc = GoogleSignIn.getClient(MainActivity.this, gso);
+                Intent intentLogin = gsc.getSignInIntent();
+                activityResultLauncher.launch(intentLogin);
             }
         });
     }
@@ -122,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         //Set Default
+        if(getSupportActionBar() == null)   return;
         rePlaceFragment(new HomeFragment());
         getSupportActionBar().setTitle(R.string.trangchu);
         navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        if(getSupportActionBar() == null)   return true;
         if(id==R.id.nav_home){
             if(currentFragment != HOME){
                 rePlaceFragment(home);
