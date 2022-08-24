@@ -2,7 +2,6 @@ package com.example.thoigianbieu.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,7 +71,7 @@ public class ThoiKhoaBieuAdapter extends RecyclerView.Adapter<ThoiKhoaBieuAdapte
             holder.tvNgayHoc.setText(ngayHoc.getStringNgayHoc(context));
 
             if(ngayHoc.isSunDay()){
-                holder.tvNgayHoc.setBackgroundResource(R.color.date_chunhat);
+                holder.tvNgayHoc.setBackgroundResource(R.color.sunday);
             }
             else if(ngayHoc.isToDay()){
                 holder.tvNgayHoc.setBackgroundResource(R.color.primary_yellow);

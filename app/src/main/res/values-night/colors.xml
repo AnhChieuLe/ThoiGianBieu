@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!--Màu được sử dụng-->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
     <color name="item_background">#2C2C2C</color>
-    <color name="layout_backgroud">#0E0E0E</color>
-
+    <color name="layout_background">#0E0E0E</color>
     <color name="text_color">#F5F5F5</color>
-
     <color name="gray">#AAAAAA</color>
     <color name="primary_yellow">#B59A00</color>
     <color name="normal_yellow">#978E60</color>
     <color name="text_title_yellow">#A18900</color>
     <color name="stroke_color">#6A6A6A</color>
-    <color name="date_chunhat">#B64343</color>
+    <color name="sunday">#B64343</color>
     <color name="red">#FF0000</color>
 </resources>
