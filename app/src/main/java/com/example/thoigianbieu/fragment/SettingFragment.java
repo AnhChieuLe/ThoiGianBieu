@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -83,39 +84,9 @@ public class SettingFragment extends PreferenceFragmentCompat {
             public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
                 int oldVl = SharePreferencesManager.getInterface();
                 int newVl = Integer.parseInt(newValue.toString());
-                int current = -1;
+                if(oldVl == newVl)  return false;
 
-                int nightModeFlags = mActivity.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-                if(nightModeFlags == Configuration.UI_MODE_NIGHT_YES){
-                    current = 1;
-                }
-                if(nightModeFlags == Configuration.UI_MODE_NIGHT_NO){
-                    current = 0;
-                }
-
-                if(oldVl == 0){
-                    if(newVl == 1){
-                        ProcessPhoenix.triggerRebirth(mActivity);
-                    }
-                    if(newVl == 2 && current != oldVl){
-                        ProcessPhoenix.triggerRebirth(mActivity);
-                    }
-                }
-
-                if(oldVl == 1){
-                    if(newVl == 0){
-                        ProcessPhoenix.triggerRebirth(mActivity);
-                    }
-                    if(newVl == 2 && current != oldVl){
-                        ProcessPhoenix.triggerRebirth(mActivity);
-                    }
-                }
-
-                if(oldVl == 2){
-                    if(newVl != current){
-                        ProcessPhoenix.triggerRebirth(mActivity);
-                    }
-                }
+                ProcessPhoenix.triggerRebirth(mActivity);
 
                 return true;
             }
@@ -160,6 +131,18 @@ public class SettingFragment extends PreferenceFragmentCompat {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = (Activity) context;
+    }
+
+    private int getDarkModeStatus(){
+        int current = -1;
+        int nightModeFlags = mActivity.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        if(nightModeFlags == Configuration.UI_MODE_NIGHT_YES){
+            current = 1;
+        }
+        if(nightModeFlags == Configuration.UI_MODE_NIGHT_NO){
+            current = 0;
+        }
+        return current;
     }
 
     private void signOut(){

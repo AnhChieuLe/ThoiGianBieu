@@ -1,6 +1,7 @@
 package com.example.thoigianbieu.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,10 +25,12 @@ public class SuKienAdaptter extends RecyclerView.Adapter<SuKienAdaptter.SuKienVi
     List<SuKien> listSukien;
     ItemClick itemClick;
     boolean isHome;
+    Activity mActivity;
 
-    public SuKienAdaptter(ItemClick itemClick, boolean isHome) {
+    public SuKienAdaptter(ItemClick itemClick, boolean isHome, Activity mActivity) {
         this.itemClick = itemClick;
         this.isHome = isHome;
+        this.mActivity = mActivity;
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -84,7 +87,7 @@ public class SuKienAdaptter extends RecyclerView.Adapter<SuKienAdaptter.SuKienVi
 
             holder.tvTieuDe.setText(suKien.getTieuDe());
             holder.tvNoiDung.setText(suKien.getNoiDung());
-            holder.tvThoiGian.setText(suKien.getStringThoiGian());
+            holder.tvThoiGian.setText(suKien.getStringThoiGian(mActivity.getApplicationContext()));
         }
     }
 

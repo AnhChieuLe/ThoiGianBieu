@@ -76,7 +76,7 @@ public class WidgetSuKienService extends RemoteViewsService {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_sukien_item);
 
             remoteViews.setTextViewText(R.id.tv_widget_sukien_tieude, suKien.getTieuDe());
-            remoteViews.setTextViewText(R.id.tv_widget_sukien_thoigian, suKien.getStringThoiGian());
+            remoteViews.setTextViewText(R.id.tv_widget_sukien_thoigian, suKien.getStringThoiGian(context));
             remoteViews.setTextViewText(R.id.tv_widget_sukien_noidung, suKien.getNoiDung());
 
             return remoteViews;

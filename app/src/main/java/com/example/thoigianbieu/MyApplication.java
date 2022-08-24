@@ -41,11 +41,7 @@ public class MyApplication extends Application {
 
     private void checkLogin(){
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        if(account == null){
-            SharePreferencesManager.setLogin(false);
-        }else{
-            SharePreferencesManager.setLogin(true);
-        }
+        SharePreferencesManager.setLogin(account != null);
     }
 
     private void createNotificationChannel() {
@@ -87,7 +83,7 @@ public class MyApplication extends Application {
         intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
         int[] ids;
         ids = AppWidgetManager.getInstance(application).getAppWidgetIds(new ComponentName(application, ThoiKhoaBieuWidget.class));
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
         application.sendBroadcast(intent);
     }
 
@@ -96,21 +92,18 @@ public class MyApplication extends Application {
         intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
         int[] ids;
         ids = AppWidgetManager.getInstance(application).getAppWidgetIds(new ComponentName(application, SukienWidget.class));
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
         application.sendBroadcast(intent);
     }
 
     public void setDarkMode(){
         int darkMode = SharePreferencesManager.getInterface();
 
-        if(darkMode == 0){
+        if(darkMode == 0)
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-        if(darkMode == 1){
+        else if(darkMode == 1)
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
-        if(darkMode == 2){
+        else if(darkMode == 2)
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-        }
     }
 }

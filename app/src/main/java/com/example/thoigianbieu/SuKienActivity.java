@@ -10,6 +10,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -181,10 +182,21 @@ public class SuKienActivity extends AppCompatActivity {
         ngayBatDau = suKien.getNgayBatDau();
         ngayKetThuc = suKien.getNgayKetThuc();
 
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm - dd/MM/yyyy", Locale.getDefault());
-
+        SimpleDateFormat format;
+        if(ngayBatDau.get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR))
+            format = new SimpleDateFormat("HH:mm - dd/MM", Locale.getDefault());
+        else
+            format = new SimpleDateFormat("HH:mm - dd/MM/yyyy", Locale.getDefault());
         tvNgayBatDau.setText(getString(R.string.batdau, format.format(ngayBatDau.getTime())));
+
+
+        if(ngayKetThuc.get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR))
+            format = new SimpleDateFormat("HH:mm - dd/MM", Locale.getDefault());
+        else
+            format = new SimpleDateFormat("HH:mm - dd/MM/yyyy", Locale.getDefault());
         tvNgayKetThuc.setText(getString(R.string.ketthuc, format.format(ngayKetThuc.getTime())));
+
+
         tvNhacNho.setText(getString(R.string.nhactruoc, suKien.getNhacNho()));
     }
 
@@ -240,13 +252,15 @@ public class SuKienActivity extends AppCompatActivity {
 
     private void getSuKien(){
         if(edtTieuDe.getText() == null || edtNoiDung.getText() == null) return;
-        String title = edtTieuDe.getText().toString();
-        String noidung = edtNoiDung.getText().toString();
+        String title = edtTieuDe.getText().toString().trim();
+        String noidung = edtNoiDung.getText().toString().trim();
 
         if(ngayBatDau == null)
             ngayBatDau = Calendar.getInstance();
         if(ngayKetThuc == null)
             ngayKetThuc = Calendar.getInstance();
+        if(ngayKetThuc.compareTo(ngayBatDau) < 0)
+            ngayKetThuc = (Calendar) ngayBatDau.clone();
 
         if(!isSave){
             suKien = new SuKien(title, noidung, ngayBatDau, ngayKetThuc, nhacNho);
@@ -257,6 +271,9 @@ public class SuKienActivity extends AppCompatActivity {
             suKien.setNgayKetThuc(ngayKetThuc);
             suKien.setNhacNho(nhacNho);
         }
+
+        Context context = getApplicationContext();
+        context.getString(R.string.nhactruoc);
     }
 
     private void save(){
@@ -388,7 +405,12 @@ public class SuKienActivity extends AppCompatActivity {
                     dialog.show();
                     return;
                 }
-                SimpleDateFormat format = new SimpleDateFormat("HH:mm - dd/MM/yyyy", Locale.getDefault());
+                SimpleDateFormat format;
+                if(calendar.get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR))
+                    format = new SimpleDateFormat("HH:mm - dd/MM", Locale.getDefault());
+                else
+                    format = new SimpleDateFormat("HH:mm - dd/MM/yyyy", Locale.getDefault());
+
                 String str = getResources().getString(isBatDau?R.string.batdau:R.string.ketthuc, format.format(calendar.getTime()));
                 date.setText(str);
                 isChange = true;

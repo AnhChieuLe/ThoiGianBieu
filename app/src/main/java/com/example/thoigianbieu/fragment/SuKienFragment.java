@@ -145,7 +145,7 @@ public class SuKienFragment extends Fragment{
             public void showButton() {
                 btnThemSuKien.setVisibility(View.VISIBLE);
             }
-        }, isHome);
+        }, isHome, mActivity);
         btnThemSuKien = view.findViewById(R.id.btn_sukien_themsukien);
     }
 

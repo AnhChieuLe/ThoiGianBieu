@@ -12,8 +12,9 @@
     <string name="giaodiensang">Sáng</string>
     <string name="giaodientoi">Tối</string>
     <string name="theohethong">Theo hệ thống</string>
-    <string name="homnay">Hôm nay</string>
-    <string name="ngaymai">Ngày mai</string>
+    <string name="homnay">"Hôm nay, "</string>
+    <string name="ngaymai">"Ngày mai, "</string>
+    <string name="homqua">Hôm qua, "</string>
     <string name="tiengviet">Tiếng Việt</string>
     <string name="tienganh">Tiếng Anh</string>
 

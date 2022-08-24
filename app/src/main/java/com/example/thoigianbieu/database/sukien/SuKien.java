@@ -1,8 +1,13 @@
 package com.example.thoigianbieu.database.sukien;
 
+import android.app.Activity;
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import com.example.thoigianbieu.R;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -105,17 +110,17 @@ public class SuKien implements Comparable, Serializable {
         return (int) minutes;
     }
 
-    public String getStringThoiGian(){
+    public String getStringThoiGian(Context context){
         StringBuilder stringBuilder = new StringBuilder("");
 
         int days = getDayDistance(Calendar.getInstance(), (Calendar) ngayBatDau.clone());
 
         if(days == 0){
-            stringBuilder.append("hôm nay, ");
+            stringBuilder.append(context.getResources().getString(R.string.homnay));
         }else if(days == 1){
-            stringBuilder.append("hôm qua, ");
+            stringBuilder.append(context.getResources().getString(R.string.homqua));
         }else if(days == -1){
-            stringBuilder.append("ngày mai, ");
+            stringBuilder.append(context.getResources().getString(R.string.ngaymai));
         }else if(Calendar.getInstance().get(Calendar.WEEK_OF_YEAR) == ngayBatDau.get(Calendar.WEEK_OF_YEAR)
                 && Calendar.getInstance().get(Calendar.YEAR) == ngayBatDau.get(Calendar.YEAR)){
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE", Locale.getDefault());

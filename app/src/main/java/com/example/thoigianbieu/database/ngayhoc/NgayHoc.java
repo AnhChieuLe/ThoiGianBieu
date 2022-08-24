@@ -104,10 +104,14 @@ public class NgayHoc implements Comparator<NgayHoc>, Comparable<NgayHoc>,Seriali
 
         if(isToDay()){
             String str = context.getResources().getString(R.string.homnay);
-            ngay.append(str).append(", ");
+            ngay.append(str);
         }
+        SimpleDateFormat format;
+        if(ngayHoc.get(Calendar.YEAR) != Calendar.getInstance().get(Calendar.YEAR))
+            format = new SimpleDateFormat("EEEE - dd/MM/yyyy", Locale.getDefault());
+        else
+            format = new SimpleDateFormat("EEEE - dd/MM", Locale.getDefault());
 
-        SimpleDateFormat format = new SimpleDateFormat("EEEE - dd/MM/yyyy");
         ngay.append(format.format(this.ngayHoc.getTime()));
 
         String str = ngay.toString().toLowerCase(Locale.ROOT);
@@ -134,7 +138,7 @@ public class NgayHoc implements Comparator<NgayHoc>, Comparable<NgayHoc>,Seriali
 
         if(isToDay()){
             String str = context.getResources().getString(R.string.homnay);
-            ngay.append(str).append(", ");
+            ngay.append(str);
         }
 
         SimpleDateFormat format = new SimpleDateFormat("EEEE", Locale.getDefault());

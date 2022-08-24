@@ -31,6 +31,7 @@
                 android:id="@+id/edt_sukien_activity_tieude"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textCapSentences|textMultiLine"
                 android:paddingStart="0dp"
                 android:paddingEnd="0dp"
                 android:hint="@string/sukien_tieude"
