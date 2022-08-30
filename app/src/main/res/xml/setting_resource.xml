@@ -10,7 +10,7 @@
             android:summary="@string/loginwithgoogle">
         </Preference>
         <Preference
-            android:title="Sao lưu và khôi phục"
+            android:title="@string/backupandrestore"
             android:summary="@string/saoluulancuoi">
             <intent
                 android:action="android.intent.action.VIEW"
@@ -97,12 +97,5 @@
             android:entryValues="@array/setting_interface_values"
             app:useSimpleSummaryProvider="true"
             android:defaultValue="2"/>
-<!--        <ListPreference-->
-<!--            android:key="PREF_COLOR"-->
-<!--            android:title="@string/mauchude"-->
-<!--            android:entries="@array/setting_color_entries"-->
-<!--            android:entryValues="@array/setting_color_values"-->
-<!--            app:useSimpleSummaryProvider="true"-->
-<!--            android:defaultValue="0"/>-->
     </PreferenceCategory>
 </PreferenceScreen>

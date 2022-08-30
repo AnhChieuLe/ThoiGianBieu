@@ -15,6 +15,7 @@
     <string name="homnay">"Hôm nay, "</string>
     <string name="homnay2">Hôm nay</string>
     <string name="ngaymai">"Ngày mai, "</string>
+    <string name="ngaymai2">Ngày mai</string>
     <string name="homqua">Hôm qua, "</string>
 
     <string name="cotkhongdeu">Kiểu cột (Không đồng đều)</string>
@@ -64,8 +65,8 @@
     <string name="dontsave">Không lưu</string>
     <string name="add_event">Thêm sự kiện mới</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
     <string name="sukien_title">Nhập tiêu đề</string>
     <string name="sukien_content">Nhập nội dung sự kiện</string>
@@ -147,4 +148,5 @@
     <string name="khoiphuc">Khôi phục</string>
     <string name="saoluu">Sao lưu</string>
     <string name="laplai">Lặp lại</string>
+    <string name="backupandrestore">Sao lưu và khôi phục</string>
 </resources>

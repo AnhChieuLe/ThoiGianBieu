@@ -33,6 +33,9 @@
         <entry key="app/src/main/res/drawable/ic_notification_off.xml" value="0.213" />
         <entry key="app/src/main/res/drawable/ic_save.xml" value="0.213" />
         <entry key="app/src/main/res/drawable/ic_themmonhoc.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable/rounded_background.xml" value="0.205" />
+        <entry key="app/src/main/res/layout-en/item_thoikhoabieu.xml" value="0.3645833333333333" />
+        <entry key="app/src/main/res/layout-en/widget_thoikhoabieu_item.xml" value="0.3651041666666667" />
         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.18" />
         <entry key="app/src/main/res/layout-land/fragment_home.xml" value="0.16" />
         <entry key="app/src/main/res/layout-land/fragment_thoikhoabieu.xml" value="0.32215357458075905" />

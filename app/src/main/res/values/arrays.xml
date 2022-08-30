@@ -2,7 +2,7 @@
 <resources>
     <string-array name="tkb_home_entries">
         <item>@string/homnay2</item>
-        <item>@string/ngaymai</item>
+        <item>@string/ngaymai2</item>
     </string-array>
     
     <string-array name="tkb_home_values">
