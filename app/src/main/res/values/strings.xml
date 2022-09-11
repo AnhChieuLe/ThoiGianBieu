@@ -138,7 +138,6 @@
     <string name="khongdetrongtenmonhoc">Không để trống tên môn học</string>
     <string name="xacnhandangxuat">Xác nhận đăng xuất</string>
     <string name="xacnhanxoasukien">Xác nhận xoá sự kiện này</string>
-    <string name="xacnhanxoangayhoc">Xác nhận xoá ngày học này</string>
     <string name="saithoigian">Sai thời gian</string>
     <string name="thoigianketthucphailonhonbatdau">Thời gian kết thúc phải lớn hơn thời gian bắt đầu</string>
     <string name="sukiendaketthuc">Sự kiện đã kết thúc</string>
@@ -149,4 +148,19 @@
     <string name="saoluu">Sao lưu</string>
     <string name="laplai">Lặp lại</string>
     <string name="backupandrestore">Sao lưu và khôi phục</string>
+
+    <string name="ghichu"><b>Ghi chú:</b> %s</string>
+    <string name="xacnhanxoangayhoc">Xác nhận xóa ngày học này</string>
+    <string name="xoangaynghi">Xóa ngày nghỉ</string>
+    <string name="xoalichnghidadat">Xóa lịch nghỉ đã đặt</string>
+    <string name="themlichhocbu">Thêm lịch học bù</string>
+    <string name="datngaynghi">Đặt ngày nghỉ</string>
+    <string name="datngaynghivataolichhocbu">Đặt thành ngày nghỉ và tạo lịch học bù</string>
+    <string name="khongthem">Không thêm</string>
+    <string name="themghichu">Thêm ghi chú</string>
+    <string name="nhapnoidung">Nhập nội dung</string>
+    <string name="importance_high">\tQuan trọng</string>
+    <string name="importance_normal">\tBình thường</string>
+    <string name="importance_low">\tKhông quan trọng</string>
+    <string name="featurenotsupport">Tính năng sao lưu và khôi phục chưa hỗ trợ</string>
 </resources>

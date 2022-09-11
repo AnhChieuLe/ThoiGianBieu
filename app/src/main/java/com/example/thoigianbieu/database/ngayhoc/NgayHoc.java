@@ -20,7 +20,14 @@ public class NgayHoc implements Comparator<NgayHoc>, Comparable<NgayHoc>,Seriali
     private Calendar ngayHoc;
     private ArrayList<String> monHocSang;
     private ArrayList<String> monHocChieu;
-    private boolean notification;
+    private boolean isDayOff;
+
+    private Calendar changeTo;
+    private String ghiChuSang;
+    private int importanceSang;
+    private String ghiChuChieu;
+    private int importanceChieu;
+
 
     public NgayHoc(Calendar ngayHoc) {
         ngayHoc.set(Calendar.HOUR_OF_DAY, 0);
@@ -30,7 +37,11 @@ public class NgayHoc implements Comparator<NgayHoc>, Comparable<NgayHoc>,Seriali
         this.ngayHoc = (Calendar) ngayHoc.clone();
         monHocSang = new ArrayList<>();
         monHocChieu = new ArrayList<>();
-        notification = false;
+        isDayOff = false;
+        ghiChuSang = "";
+        ghiChuChieu = "";
+        importanceSang = 0;
+        importanceChieu = 0;
     }
 
     public Calendar getNgayHoc() {
@@ -91,12 +102,20 @@ public class NgayHoc implements Comparator<NgayHoc>, Comparable<NgayHoc>,Seriali
         this.monHocChieu = monHocChieu;
     }
 
-    public boolean isNotification() {
-        return notification;
+    public boolean isDayOff() {
+        return isDayOff;
     }
 
-    public void setNotification(boolean notification) {
-        this.notification = notification;
+    public void setDayOff(boolean dayOff) {
+        isDayOff = dayOff;
+    }
+
+    public Calendar getChangeTo() {
+        return changeTo;
+    }
+
+    public void setChangeTo(Calendar changeTo) {
+        this.changeTo = changeTo;
     }
 
     public String getStringNgayHoc(Context context){
@@ -117,6 +136,50 @@ public class NgayHoc implements Comparator<NgayHoc>, Comparable<NgayHoc>,Seriali
         String str = ngay.toString().toLowerCase(Locale.ROOT);
         str = str.substring(0, 1).toUpperCase() + str.substring(1);
         return str;
+    }
+
+    public String getGhiChuSang() {
+        return ghiChuSang;
+    }
+
+    public void setGhiChuSang(String ghiChuSang) {
+        this.ghiChuSang = ghiChuSang;
+    }
+
+    public String getGhiChuChieu() {
+        return ghiChuChieu;
+    }
+
+    public void setGhiChuChieu(String ghiChuChieu) {
+        this.ghiChuChieu = ghiChuChieu;
+    }
+
+    public int getImportanceSang() {
+        return importanceSang;
+    }
+
+    public void setImportanceSang(int importanceSang) {
+        this.importanceSang = importanceSang;
+    }
+
+    public int getImportanceChieu() {
+        return importanceChieu;
+    }
+
+    public void setImportanceChieu(int importanceChieu) {
+        this.importanceChieu = importanceChieu;
+    }
+
+    public void setEmptyMonHoc(){
+        monHocSang.clear();
+        monHocChieu.clear();
+    }
+
+    public boolean isEmpty(){
+        return monHocSang.size() == 0
+            && monHocChieu.size() == 0
+            && ghiChuSang.equals("")
+            && ghiChuChieu.equals("");
     }
 
     public boolean isToDay(){

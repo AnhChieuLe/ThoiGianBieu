@@ -133,18 +133,6 @@ public class SettingFragment extends PreferenceFragmentCompat {
         mActivity = (Activity) context;
     }
 
-    private int getDarkModeStatus(){
-        int current = -1;
-        int nightModeFlags = mActivity.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-        if(nightModeFlags == Configuration.UI_MODE_NIGHT_YES){
-            current = 1;
-        }
-        if(nightModeFlags == Configuration.UI_MODE_NIGHT_NO){
-            current = 0;
-        }
-        return current;
-    }
-
     private void signOut(){
 
         gsc.signOut();

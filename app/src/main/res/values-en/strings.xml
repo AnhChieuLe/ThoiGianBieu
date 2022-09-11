@@ -109,7 +109,6 @@
     <string name="khongdetrongtenmonhoc">Do not leave the subject name blank</string>
     <string name="xacnhandangxuat">Sign out confirmation</string>
     <string name="xacnhanxoasukien">Confirm deletion of this event</string>
-    <string name="xacnhanxoangayhoc">Confirm deletion of this school day</string>
     <string name="saithoigian">Wrong time</string>
     <string name="thoigianketthucphailonhonbatdau">End time must be greater than start time</string>
     <string name="sukiendaketthuc">Event has ended</string>
@@ -121,4 +120,18 @@
     <string name="laplai">Repeat</string>
     <string name="ngaymai2">Tomorrow</string>
     <string name="backupandrestore">Backup and restore</string>
+    <string name="ghichu">Note: %s</string>
+    <string name="xacnhanxoangayhoc">Confirm deletion of this class schedule</string>
+    <string name="xoangaynghi">Delete dayoff</string>
+    <string name="xoalichnghidadat">Delete this dayoff</string>
+    <string name="themlichhocbu">Add make-up class schedule</string>
+    <string name="datngaynghi">Change to dayoff</string>
+    <string name="datngaynghivataolichhocbu">Change to dayoff and add make-up class schedule</string>
+    <string name="khongthem">Don\'t add</string>
+    <string name="themghichu">Add note</string>
+    <string name="nhapnoidung">Enter content</string>
+    <string name="importance_high">" Importance high"</string>
+    <string name="importance_normal">" Importance normal"</string>
+    <string name="importance_low">" Importance low"</string>
+    <string name="featurenotsupport">This feature not support on this version</string>
 </resources>

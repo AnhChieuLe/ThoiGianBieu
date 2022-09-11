@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -97,6 +98,20 @@ public class WidgetThoiKhoaBieuService extends RemoteViewsService {
                 remoteView.setTextViewText(R.id.tv_widget_thoikhoabieu_monhocchieu, ngayHoc.getStringChieu());
             }else {
                 remoteView.setTextViewText(R.id.tv_widget_thoikhoabieu_monhocchieu, trong);
+            }
+
+            if(!ngayHoc.getGhiChuSang().equals("")){
+                remoteView.setViewVisibility(R.id.tv_widget_ghichu_sang, View.VISIBLE);
+                remoteView.setTextViewText(R.id.tv_widget_ghichu_sang, ngayHoc.getGhiChuSang());
+            }else{
+                remoteView.setViewVisibility(R.id.tv_widget_ghichu_sang, View.GONE);
+            }
+
+            if(!ngayHoc.getGhiChuChieu().equals("")){
+                remoteView.setViewVisibility(R.id.tv_widget_ghichu_chieu, View.VISIBLE);
+                remoteView.setTextViewText(R.id.tv_widget_ghichu_chieu, ngayHoc.getGhiChuChieu());
+            }else{
+                remoteView.setViewVisibility(R.id.tv_widget_ghichu_chieu, View.GONE);
             }
 
             Intent intent = new Intent(context, MainActivity.class);

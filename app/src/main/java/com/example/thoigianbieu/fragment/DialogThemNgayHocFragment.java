@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -18,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.thoigianbieu.R;
@@ -36,16 +36,19 @@ public class DialogThemNgayHocFragment extends DialogFragment {
     Button btnThem, btnHuy;
 
     Calendar ngay;
-    LoadData loadData;
+    DialogInterface dialogInterface;
+    boolean isNew;
 
-    public interface LoadData{
+    public interface DialogInterface {
         void loadData();
+        void setNgay(Calendar ngay);
     }
 
     @SuppressLint("ValidFragment")
-    public DialogThemNgayHocFragment(LoadData loadData) {
+    public DialogThemNgayHocFragment(DialogInterface loadData, boolean isNew) {
         super();
-        this.loadData = loadData;
+        this.dialogInterface = loadData;
+        this.isNew = isNew;
     }
 
     @Override
@@ -91,25 +94,42 @@ public class DialogThemNgayHocFragment extends DialogFragment {
             }
         });
 
+        if(!isNew){
+            edtLapLai.setVisibility(View.GONE);
+
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tvNgay.getLayoutParams();
+            params.weight = 10;
+            tvNgay.setLayoutParams(params);
+        }
+
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NgayHoc ngayHoc = getNgayHoc();
                 if(ngayHoc==null)   return;
 
-                String laplai = edtLapLai.getText().toString();
-                laplai = laplai.replace(getString(R.string.week), "");
-                int soTuan = Integer.parseInt(laplai);
+                int soTuan;
+                if(isNew){
+                    String laplai = edtLapLai.getText().toString();
+                    laplai = laplai.replace(getString(R.string.week), "");
+                    soTuan = Integer.parseInt(laplai);
+                }else{
+                    soTuan = 1;
+                }
+
                 int i = 0;
+                Calendar ngay;
                 do{
                     NgayHocDatabase.getInstance(getActivity()).ngayHocDao().insertNgayHoc(ngayHoc);
                     i++;
-                    Calendar ngay = ngayHoc.getNgayHoc();
+                    ngay = ngayHoc.getNgayHoc();
                     ngay.add(Calendar.WEEK_OF_YEAR, 1);
                     ngayHoc.setNgayHoc(ngay);
                 }while (i < soTuan);
 
-                loadData.loadData();
+                dialogInterface.setNgay(ngay);
+
+                dialogInterface.loadData();
                 getDialog().dismiss();
             }
         });
@@ -130,9 +150,9 @@ public class DialogThemNgayHocFragment extends DialogFragment {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle(getString(R.string.thieuthongtin))
                     .setMessage(R.string.khongdetrongbuoihoc)
-                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    .setPositiveButton(R.string.ok, new android.content.DialogInterface.OnClickListener() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                        public void onClick(android.content.DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
                     });
@@ -144,12 +164,18 @@ public class DialogThemNgayHocFragment extends DialogFragment {
 
         NgayHoc ngayHoc = new NgayHoc(ngay);
 
-        if(!sang.equals("")){
+        if(!isNew){
+            if(!sang.equals(""))
+                sang += " - Học bù";
+            if(!chieu.equals(""))
+                chieu += " - Học bù";
+        }
+
+        if(!sang.equals(""))
             ngayHoc.addMonHocSang(sang);
-        }
-        if(!chieu.equals("")){
+
+        if(!chieu.equals(""))
             ngayHoc.addMonHocChieu(chieu);
-        }
 
         return ngayHoc;
     }

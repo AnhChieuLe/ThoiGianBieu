@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_widget_thoikhoabieu"
     android:orientation="vertical"
     android:layout_width="wrap_content"
@@ -38,16 +39,32 @@
             android:text="@string/sang"
             android:gravity="center"
             android:textSize="14sp"/>
-        <TextView
-            android:id="@+id/tv_widget_thoikhoabieu_monhocsang"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color"
             android:layout_weight="7.5"
-            android:text="@string/monhoc1_demo"
-            android:maxLines="2"
-            android:gravity="start"
-            android:textSize="14sp" />
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_widget_thoikhoabieu_monhocsang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_color"
+                android:maxLines="2"
+                android:text="@string/monhoc2_demo"
+                android:gravity="start"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_widget_ghichu_sang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:alpha="0.75"
+                android:textSize="14sp"
+                android:maxLines="1"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:visibility="gone"/>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,16 +82,31 @@
             android:text="@string/chieu"
             android:gravity="center"
             android:textSize="14sp"/>
-        <TextView
-            android:id="@+id/tv_widget_thoikhoabieu_monhocchieu"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color"
             android:layout_weight="7.5"
-            android:maxLines="2"
-            android:text="@string/monhoc2_demo"
-            android:gravity="start"
-            android:textSize="14sp" />
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_widget_thoikhoabieu_monhocchieu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_color"
+                android:maxLines="2"
+                android:text="@string/monhoc2_demo"
+                android:gravity="start"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_widget_ghichu_chieu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:alpha="0.75"
+                android:textSize="14sp"
+                android:maxLines="1"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:visibility="gone"/>
+        </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>

@@ -25,6 +25,7 @@ public class NgayHocManager {
         this.context = context;
         this.listNH = new ArrayList<>();
         this.listNH = NgayHocDatabase.getInstance(context).ngayHocDao().getListNgayHoc();
+        this.listNH.removeIf(ngayHoc -> ngayHoc.getNgayHoc() == null);
     }
 
     public void addMonHoc(){

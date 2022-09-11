@@ -27,6 +27,10 @@ public interface NgayHocDao {
     @Delete
     void deleteNgayHoc(NgayHoc ngayHoc);
 
+    @Query("DELETE FROM ngayhoc WHERE ngayHoc = :ngay")
+    void deleteNgayHoc(Calendar ngay);
+
+
     @Update
     void updateNgayHoc(NgayHoc ngayHoc);
 

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/item_background">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/themghichu"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/edt_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/item_background"
+        android:padding="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:textSize="16sp"
+        android:hint="@string/nhapnoidung"/>
+
+    <RadioGroup
+        android:id="@+id/group_importance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="start"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp">
+
+        <RadioButton
+            android:id="@+id/radio_importance_high"
+            android:text="@string/importance_high"
+            style="@style/checkbox_style"
+            android:textSize="14sp"/>
+
+        <RadioButton
+            android:id="@+id/radio_importance_normal"
+            android:text="@string/importance_normal"
+            style="@style/checkbox_style"
+            android:textSize="14sp"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/radio_importance_low"
+            android:text="@string/importance_low"
+            style="@style/checkbox_style"
+            android:textSize="14sp"/>
+    </RadioGroup>
+</LinearLayout>

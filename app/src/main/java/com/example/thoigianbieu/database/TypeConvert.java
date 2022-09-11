@@ -24,6 +24,7 @@ public  class TypeConvert{
 
     @TypeConverter
     public Calendar LongtoCalendar(long l){
+        if(l == 0)  return null;
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(l);
         return cal;
@@ -31,6 +32,7 @@ public  class TypeConvert{
 
     @TypeConverter
     public long CalendarToLong(Calendar calendar){
+        if(calendar == null)    return 0;
         return calendar.getTime().getTime();
     }
 }

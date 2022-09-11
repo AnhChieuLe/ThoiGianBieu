@@ -120,7 +120,7 @@ public class BackupActivity extends AppCompatActivity {
     private void showDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.canhbao)
-                .setMessage("Tính năng sao lưu và khôi phục chưa hỗ trợ")
+                .setMessage(R.string.featurenotsupport)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
